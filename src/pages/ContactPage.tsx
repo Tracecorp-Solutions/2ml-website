@@ -9,6 +9,49 @@ import {
   LinkedinIcon,
 } from "../components/SocialIcons";
 
+// Import partner logos directly for production compatibility
+import AFD from "../assets/AFD.png";
+import Afwa from "../assets/Afwa.jpeg";
+import MinistryOfWater from "../assets/Ministry-of-Water-and-Environment.jpg";
+import RTI from "../assets/RTI.png";
+import Afdb from "../assets/afdb.png";
+import Amane from "../assets/amane.jpg";
+import Giz from "../assets/giz.png";
+import Global from "../assets/global.png";
+import Gwi from "../assets/gwi.png";
+import Icrc from "../assets/icrc.jpg";
+import Idev from "../assets/idev.jpg";
+import Isdb from "../assets/isdb.png";
+import Nwsc from "../assets/nwsc.png";
+import Rock from "../assets/rock.png";
+import SustainableWater from "../assets/sustainablewater.jpg";
+import Unicef from "../assets/unicef.png";
+import Usaid from "../assets/usaid.png";
+import WaterOrg from "../assets/water.org.png";
+import Wbg from "../assets/wbg.png";
+
+const partnerLogos = [
+  AFD,
+  Afwa,
+  MinistryOfWater,
+  RTI,
+  Afdb,
+  Amane,
+  Giz,
+  Global,
+  Gwi,
+  Icrc,
+  Idev,
+  Isdb,
+  Nwsc,
+  Rock,
+  SustainableWater,
+  Unicef,
+  Usaid,
+  WaterOrg,
+  Wbg,
+];
+
 export function ContactPage() {
   return (
     <>
@@ -35,17 +78,15 @@ export function ContactPage() {
           </h2>
           <div className="relative overflow-hidden">
             <div className="flex animate-marquee gap-12">
-              {[...images.partners, ...images.partners].map(
-                (partner, index) => (
-                  <div key={index} className="flex-shrink-0">
-                    <img
-                      src={partner}
-                      alt="Partner logo"
-                      className="h-16 w-auto object-contain transition-all duration-300"
-                    />
-                  </div>
-                ),
-              )}
+              {[...partnerLogos, ...partnerLogos].map((partner, index) => (
+                <div key={index} className="flex-shrink-0">
+                  <img
+                    src={partner}
+                    alt="Partner logo"
+                    className="h-16 w-auto object-contain transition-all duration-300"
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </Reveal>
