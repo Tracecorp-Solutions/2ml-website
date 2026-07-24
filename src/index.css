@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: Georgia, 'Times New Roman', serif;
+}
+
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; }
+
+@keyframes hero-zoom { from { transform: scale(1.08); } to { transform: scale(1); } }
+.hero-image { animation: hero-zoom 1.25s ease-out both; }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.22, 1, .36, 1), transform .7s cubic-bezier(.22, 1, .36, 1); }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .hero-image { animation: none; } .reveal { opacity: 1; transform: none; transition: none; } }
