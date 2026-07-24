@@ -1,0 +1,256 @@
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+  0%, 49% {
+    border-right-color: #F5953B;
+  }
+  50%, 100% {
+    border-right-color: transparent;
+  }
+}
+
+.typing-word {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #F5953B;
+  animation: typing 0.5s steps(20, end) forwards;
+  margin-right: 0.1em;
+}
+
+.typing-word:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.typing-word:nth-child(2) {
+  animation-delay: 0.8s;
+}
+
+.typing-word:nth-child(3) {
+  animation-delay: 1.4s;
+}
+
+.typing-word:nth-child(4) {
+  animation-delay: 2s;
+}
+
+.typing-word:nth-child(5) {
+  animation-delay: 2.6s;
+}
+
+.typing-word:nth-child(6) {
+  animation-delay: 3.2s;
+  border-right: none;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.hero-section {
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.hero-title {
+  display: block;
+}
+
+.hero-description {
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.hero-cta {
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.who-we-are-section {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.who-we-are-content {
+  animation: slideInRight 0.8s ease-out 0.2s both;
+}
+
+.expertise-section {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.expertise-item {
+  animation: scaleIn 0.6s ease-out;
+  transition: all 0.3s ease;
+}
+
+.expertise-item:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.approach-section {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.approach-image {
+  animation: slideInLeft 0.8s ease-out 0.2s both;
+}
+
+.approach-content {
+  animation: slideInRight 0.8s ease-out 0.2s both;
+}
+
+.eyebrow {
+  animation: fadeInUp 0.6s ease-out;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #F5953B;
+}
+
+.section-heading {
+  animation: fadeInUp 0.8s ease-out 0.1s both;
+  line-height: 1;
+}
+
+.section-description {
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.cta-link {
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.cta-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #8C1E2D;
+  transition: width 0.3s ease;
+}
+
+.cta-link:hover::after {
+  width: 100%;
+}
+
+.button-primary {
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.button-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: left 0.3s ease;
+}
+
+.button-primary:hover::before {
+  left: 100%;
+}
+
+.button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.expertise-grid {
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+.expertise-number {
+  color: #F5953B;
+  font-size: 0.875rem;
+  font-weight: 600;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.expertise-title {
+  animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
