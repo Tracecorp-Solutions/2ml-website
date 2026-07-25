@@ -39,6 +39,7 @@ export const images = {
 
 export const navigation = [
   { to: '/about-us', label: 'About us' },
+  { to: '/experience', label: 'Experience' },
   { to: '/services', label: 'Services' },
   { to: '/projects', label: 'Projects' },
   { to: '/team', label: 'Our team' },
