@@ -11,6 +11,15 @@ export const images = {
   lorna: '/src/assets/Rorna.jpeg',
   vincent: '/src/assets/vincent.jpg',
   sam: '/src/assets/sam.png',
+  erp: '/src/assets/erp.png',
+  financialmanagement: '/src/assets/financialmanagement.png',
+  gissolutions: '/src/assets/gissolutions.png',
+  institutionaldevelopment: '/src/assets/institutionaldevelopment.png',
+  pip: '/src/assets/pip.png',
+  policy: '/src/assets/policy.png',
+  research: '/src/assets/research.png',
+  strategicplanning: '/src/assets/strategicplanning.png',
+  utilitymanagement: '/src/assets/utilitymanagement.png',
   // Partner logos
 
   partners: [
@@ -37,6 +46,7 @@ export const images = {
 }
 
 export const navigation = [
+  { to: '/', label: 'Home' },
   { to: '/about-us', label: 'About us' },
   { to: '/services', label: 'Services' },
   { to: '/projects', label: 'Projects' },
