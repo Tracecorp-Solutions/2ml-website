@@ -101,7 +101,7 @@ function ServiceCard({
               <img
                 src={serviceImages[index % serviceImages.length]}
                 alt={service.title}
-                className="h-full min-h-[250px] w-full object-cover transition-all duration-300"
+                className="h-full min-h-[250px] w-full object-contain transition-all duration-300"
               />
             </div>
           </>
@@ -111,7 +111,7 @@ function ServiceCard({
               <img
                 src={serviceImages[index % serviceImages.length]}
                 alt={service.title}
-                className="h-full min-h-[250px] w-full object-cover transition-all duration-300"
+                className="h-full min-h-[250px] w-full object-contain transition-all duration-300"
               />
             </div>
             <div className="lg:col-start-3 space-y-4 transition-all duration-300 group-hover:-translate-x-2">
@@ -260,16 +260,15 @@ export function ServicesPage() {
         <div className="mt-16 space-y-16">
           {services.map((service, index) => {
             const serviceImages = [
-              images.hero,
-              images.field,
-              images.map,
-              images.hero,
-              images.community,
-              images.hero,
-              images.field,
-              images.map,
-              images.hero,
-              images.community,
+              images.institutionaldevelopment,
+              images.erp,
+              images.pip,
+              images.policy,
+              images.utilitymanagement,
+              images.strategicplanning,
+              images.gissolutions,
+              images.financialmanagement,
+              images.research,
             ];
             const isEven = index % 2 === 0;
             return (

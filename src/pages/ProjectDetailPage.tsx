@@ -283,7 +283,7 @@ export function ProjectDetailPage() {
           kicker="Project Details"
           title="Project Not Found"
           description="The project you're looking for doesn't exist or has been removed."
-          picture={images.city}
+          picture={images.hero}
         />
         <section className="mx-auto max-w-[95%] px-5 py-20 sm:px-8 lg:px-12 lg:py-32">
           <Reveal>
@@ -304,12 +304,6 @@ export function ProjectDetailPage() {
 
   return (
     <>
-      <PageHero
-        kicker="Project Details"
-        title={<>{project.title}</>}
-        description={`Project in ${country}`}
-        picture={images.city}
-      />
       <section className="mx-auto max-w-[95%] px-5 py-20 sm:px-8 lg:px-12 lg:py-32">
         <div className="grid gap-10 lg:grid-cols-3">
           <div className="lg:col-span-2 space-y-8">
