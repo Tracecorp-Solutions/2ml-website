@@ -1,12 +1,10 @@
 export const images = {
-  hero: 'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1800&q=85',
-  community: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1200&q=85',
-  map: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1200&q=85',
-  meeting: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85',
-  field: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1200&q=85',
-  team: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=85',
-  city: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1200&q=85',
-  about: '/src/assets/about.jpg',
+  hero: '/src/assets/assets.png',
+  community: '/src/assets/executiveleadership.png',
+  map: '/src/assets/gis.png',
+  meeting: '/src/assets/stakeholder.png',
+  field: '/src/assets/fieldoperations.png',
+  team: '/src/assets/watertreatement.png',
   william: '/src/assets/DrWilliam.jpg',
   gilbert: '/src/assets/Gilbert.jpg',
   rosemary: '/src/assets/rosemary.jpg',
@@ -14,6 +12,7 @@ export const images = {
   vincent: '/src/assets/vincent.jpg',
   sam: '/src/assets/sam.png',
   // Partner logos
+
   partners: [
     '/src/assets/AFD.png',
     '/src/assets/Afwa.jpeg',
@@ -39,7 +38,6 @@ export const images = {
 
 export const navigation = [
   { to: '/about-us', label: 'About us' },
-  { to: '/experience', label: 'Experience' },
   { to: '/services', label: 'Services' },
   { to: '/projects', label: 'Projects' },
   { to: '/team', label: 'Our team' },

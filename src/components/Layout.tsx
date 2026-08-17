@@ -24,7 +24,7 @@ function Logo() {
 function Footer() {
   return (
     <footer className="bg-[#111111] text-white">
-      <div className="mx-auto grid max-w-[1440px] gap-12 px-5 py-8 sm:px-8 md:grid-cols-[1.2fr_1fr_1fr]">
+      <div className="mx-auto grid max-w-[95%] gap-12 px-5 py-8 sm:px-8 md:grid-cols-[1.2fr_1fr_1fr]">
         <div>
           <div className="text-2xl font-extrabold tracking-[-.07em]">
             2ML <span className="font-medium">CONSULTING</span>
@@ -130,30 +130,13 @@ export function Layout({ children }: { children: ReactNode }) {
               </NavLink>
             ))}
           </nav>
-          {/* <div className="flex items-center gap-3 ml-auto nav-desktop">
-            <Link
-              to="/contact-us"
-              className="hidden rounded-lg bg-[#8C1E2D] px-6 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#6f1724] hover:shadow-md sm:flex items-center gap-2"
-            >
-              Contact us <Arrow />
-            </Link>
-            <button
-              type="button"
-              className="nav-mobile-button h-10 w-10 place-items-center rounded-lg border border-black/10 transition-colors duration-200 hover:bg-black/5"
-              onClick={() => setOpen(!open)}
-              aria-label="Toggle navigation"
-              aria-expanded={open}
-            >
-              <span className="text-xl font-light">{open ? "✕" : "☰"}</span>
-            </button>
-          </div> */}
         </div>
         {open && (
           <nav
             className="nav-mobile open border-t border-black/8 bg-white px-5 py-4 shadow-md"
             aria-label="Mobile navigation"
           >
-            <div className="mx-auto grid max-w-[1440px] gap-1">
+            <div className="mx-auto grid max-w-[95%] gap-1">
               {navigation.map((link) => (
                 <NavLink
                   onClick={() => setOpen(false)}
