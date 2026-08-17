@@ -136,7 +136,7 @@ export function ExperiencePage() {
           className="absolute inset-0 -z-10 h-full w-full object-cover"
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/80 via-black/60 to-black/80" />
-        <div className="relative z-10 mx-auto grid max-w-[1440px] gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[.8fr_1.2fr] lg:px-12 lg:py-28">
+        <div className="relative z-10 mx-auto grid max-w-[95%] gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[.8fr_1.2fr] lg:px-12 lg:py-28">
           <Reveal>
             <p className="text-xs font-bold uppercase tracking-[.18em] text-[#F5953B]">
               By the numbers
@@ -199,7 +199,7 @@ export function ExperiencePage() {
       </section>
 
       {/* Services Section */}
-      <section className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 lg:px-12 lg:py-32">
+      <section className="mx-auto max-w-[95%] px-5 py-20 sm:px-8 lg:px-12 lg:py-32">
         <div className="grid gap-10 lg:grid-cols-2">
           <Reveal>
             <Eyebrow>Services & experience</Eyebrow>
@@ -257,7 +257,7 @@ export function ExperiencePage() {
 
       {/* Why Clients Choose 2ML Section */}
       <section className="bg-[#111111] text-white">
-        <div className="mx-auto grid max-w-[1440px] gap-12 px-5 py-10 sm:px-8 lg:grid-cols-[.9fr_1.1fr] lg:px-12">
+        <div className="mx-auto grid max-w-[95%] gap-12 px-5 py-10 sm:px-8 lg:grid-cols-[.9fr_1.1fr] lg:px-12">
           <Reveal>
             <p className="text-xs font-bold uppercase tracking-[.18em] text-[#F5953B]">
               Why clients choose 2ML
@@ -297,7 +297,7 @@ export function ExperiencePage() {
       </section>
 
       {/* Partners Section */}
-      <section className="mx-auto max-w-[1440px] bg-white px-5 py-16 sm:px-8 lg:px-12">
+      <section className="mx-auto max-w-[95%] bg-white px-5 py-16 sm:px-8 lg:px-12">
         <Reveal>
           <Eyebrow>Trusted partners</Eyebrow>
           <h2 className="mt-6 text-4xl font-semibold leading-[1] tracking-[-.065em] sm:text-6xl">

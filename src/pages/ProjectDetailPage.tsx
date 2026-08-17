@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ContactBand, Eyebrow, PageHero } from "../components/Shared";
+import { Eyebrow, PageHero } from "../components/Shared";
 import { Reveal } from "../components/Motion";
 import { images } from "../data/site";
 
@@ -285,7 +285,7 @@ export function ProjectDetailPage() {
           description="The project you're looking for doesn't exist or has been removed."
           picture={images.city}
         />
-        <section className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 lg:px-12 lg:py-32">
+        <section className="mx-auto max-w-[95%] px-5 py-20 sm:px-8 lg:px-12 lg:py-32">
           <Reveal>
             <p className="text-lg text-black/65">
               Please check the URL or navigate back to the projects page.
@@ -310,7 +310,7 @@ export function ProjectDetailPage() {
         description={`Project in ${country}`}
         picture={images.city}
       />
-      <section className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 lg:px-12 lg:py-32">
+      <section className="mx-auto max-w-[95%] px-5 py-20 sm:px-8 lg:px-12 lg:py-32">
         <div className="grid gap-10 lg:grid-cols-3">
           <div className="lg:col-span-2 space-y-8">
             <Reveal>
@@ -451,7 +451,6 @@ export function ProjectDetailPage() {
           </div>
         </div>
       </section>
-      <ContactBand />
     </>
   );
 }
