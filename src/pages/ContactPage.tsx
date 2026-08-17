@@ -1,7 +1,7 @@
-import { Eyebrow, PageHero } from "../components/Shared";
+import { Eyebrow } from "../components/Shared";
 import { Reveal } from "../components/Motion";
+import { Partners } from "../components/Partners";
 import { ContactForm } from "../components/ContactForm";
-import { images } from "../data/site";
 import { Mail, MapPin, FileText } from "lucide-react";
 import {
   TwitterIcon,
@@ -9,90 +9,12 @@ import {
   LinkedinIcon,
 } from "../components/SocialIcons";
 
-// Import partner logos directly for production compatibility
-import AFD from "../assets/AFD.png";
-import Afwa from "../assets/Afwa.jpeg";
-import MinistryOfWater from "../assets/Ministry-of-Water-and-Environment.jpg";
-import RTI from "../assets/RTI.png";
-import Afdb from "../assets/afdb.png";
-import Amane from "../assets/amane.jpg";
-import Giz from "../assets/giz.png";
-import Global from "../assets/global.png";
-import Gwi from "../assets/gwi.png";
-import Icrc from "../assets/icrc.jpg";
-import Idev from "../assets/idev.jpg";
-import Isdb from "../assets/isdb.png";
-import Nwsc from "../assets/nwsc.png";
-import Rock from "../assets/rock.png";
-import SustainableWater from "../assets/sustainablewater.jpg";
-import Unicef from "../assets/unicef.png";
-import Usaid from "../assets/usaid.png";
-import WaterOrg from "../assets/water.org.png";
-import Wbg from "../assets/wbg.png";
-
-const partnerLogos = [
-  AFD,
-  Afwa,
-  MinistryOfWater,
-  RTI,
-  Afdb,
-  Amane,
-  Giz,
-  Global,
-  Gwi,
-  Icrc,
-  Idev,
-  Isdb,
-  Nwsc,
-  Rock,
-  SustainableWater,
-  Unicef,
-  Usaid,
-  WaterOrg,
-  Wbg,
-];
-
 export function ContactPage() {
   return (
     <>
-      <PageHero
-        kicker="Contact us"
-        title={
-          <>
-            Let’s build
-            <br />
-            <em className="font-serif font-medium text-[#8C1E2D]">
-              what’s next.
-            </em>
-          </>
-        }
-        description="Tell us about the challenge ahead. We would be glad to start the conversation."
-        picture={images.hero}
-      />
+      <Partners title="Our trusted partners" />
 
-      {/* Partners Section with Auto-scroll */}
-      <section className="border-y border-black/10 bg-white py-8">
-        <Reveal>
-          <h2 className="mb-8 text-center text-2xl font-semibold tracking-[-.05em]">
-            Our trusted partners
-          </h2>
-          <div className="relative overflow-hidden">
-            <div className="flex animate-marquee gap-12">
-              {[...partnerLogos, ...partnerLogos].map((partner, index) => (
-                <div key={index} className="flex-shrink-0">
-                  <img
-                    src={partner}
-                    alt="Partner logo"
-                    className="h-16 w-auto object-contain transition-all duration-300"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </Reveal>
-      </section>
-
-      <section className="mx-auto grid max-w-[1440px] gap-14 px-5 py-10 sm:px-8 lg:grid-cols-[.8fr_1.2fr] lg:px-12">
+      <section className="mx-auto grid max-w-[95%] gap-14 px-5 py-10 sm:px-8 lg:grid-cols-[.8fr_1.2fr] lg:px-12">
         <Reveal>
           <Eyebrow>Our offices</Eyebrow>
           <h2 className="mt-6 text-4xl font-semibold leading-[.98] tracking-[-.06em]">

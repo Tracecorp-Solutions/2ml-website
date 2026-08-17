@@ -26,7 +26,7 @@ export function PageHero({
 }) {
   return (
     <section className="bg-[#f8e6d1]">
-      <div className="mx-auto grid max-w-[1440px] items-stretch lg:grid-cols-[1.05fr_.95fr]">
+      <div className="mx-auto grid max-w-[95%] items-stretch lg:grid-cols-[1.05fr_.95fr]">
         <div className="px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
           <Reveal>
             <Eyebrow>{kicker}</Eyebrow>
@@ -53,7 +53,7 @@ export function PageHero({
 export function ContactBand() {
   return (
     <section className="bg-[#F5953B]">
-      <div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-10 px-5 py-10 sm:px-8 md:flex-row md:items-end lg:px-12">
+      <div className="mx-auto flex max-w-[95%] flex-col justify-between gap-10 px-5 py-10 sm:px-8 md:flex-row md:items-end lg:px-12">
         <div>
           <Eyebrow>Let’s work together</Eyebrow>
           <h2 className="mt-5 text-5xl font-semibold leading-[.9] tracking-[-.075em] sm:text-7xl">
