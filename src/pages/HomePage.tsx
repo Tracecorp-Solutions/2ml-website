@@ -1,11 +1,92 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Arrow, ContactBand, Eyebrow } from "../components/Shared";
+import { Arrow, Eyebrow } from "../components/Shared";
 import { Reveal } from "../components/Motion";
+import { Partners } from "../components/Partners";
 import { TypewriterHeading } from "../components/TypewriterHeading";
 import { images } from "../data/site";
+import {
+  Calendar,
+  Globe,
+  Users,
+  Building2,
+  Database,
+  TrendingUp,
+} from "lucide-react";
 
-const heroImages = [images.hero, images.city, images.field, images.map];
+const heroImages = [
+  images.hero,
+  images.field,
+  images.map,
+  images.meeting,
+  images.team,
+];
+
+function CountingNumber({
+  target,
+  suffix = "",
+  duration = 2000,
+}: {
+  target: string;
+  suffix?: string;
+  duration?: number;
+}) {
+  const [count, setCount] = useState(0);
+  const [hasStarted, setHasStarted] = useState(false);
+  const ref = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasStarted) {
+          setHasStarted(true);
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [hasStarted]);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+
+    let startTime: number | null = null;
+    const numericTarget = parseInt(target.toString().replace(/\D/g, ""));
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const currentCount = Math.floor(progress * numericTarget);
+      setCount(currentCount);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [target, duration, hasStarted]);
+
+  return (
+    <p
+      ref={ref}
+      className="text-5xl font-semibold tracking-[-.075em] text-white"
+    >
+      {count}
+      {suffix}
+    </p>
+  );
+}
 
 export function HomePage() {
   const [activeImage, setActiveImage] = useState(0);
@@ -18,19 +99,16 @@ export function HomePage() {
   }, []);
   return (
     <>
-      <section className="relative isolate min-h-[350px] overflow-hidden bg-[#111111] text-white">
+      <section className="relative isolate min-h-[50vh] overflow-hidden bg-[#111111] text-white">
         <img
           key={heroImages[activeImage]}
           src={heroImages[activeImage]}
           alt="Utility infrastructure"
-          className="hero-image absolute inset-0 -z-20 h-full w-full object-cover"
+          className="hero-image absolute top-[-80px] right-0 -z-20 w-full object-cover"
         />
-        {/* <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black/90 via-black/65 to-black/10" /> */}
-        <div className="mx-auto flex min-h-[400px] max-w-[1440px] mt-20 flex-col justify-end px-5 pb-20 sm:px-8 lg:px-12">
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/70 via-black/50 to-transparent" />
+        <div className="mx-auto flex min-h-[40vh] max-w-[95%] flex-col mt-20 justify-end px-5 pb-20 sm:px-8 lg:px-12">
           <Reveal>
-            <p className="text-xs font-bold uppercase tracking-[.18em] text-[#F5953B] mb-4">
-              ISO 9001:2015 certified advisory firm
-            </p>
             <TypewriterHeading
               className="max-w-6xl text-5xl font-semibold leading-[.9]  tracking-[-.075em] sm:text-5xl lg:text-6xl"
               charDelay={60}
@@ -67,7 +145,7 @@ export function HomePage() {
                 href="/src/assets/2ML-Consulting-Limited-Updated-Profile.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-fit items-center gap-2 rounded-full border-2 border-[#8C1E2D] px-6 py-3 text-sm font-semibold text-[#8C1E2D] transition-all duration-300 hover:bg-[#8C1E2D] hover:text-white"
+                className="inline-flex h-fit items-center gap-2 rounded-full bg-[#8C1E2D] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#F5953B]"
               >
                 View Profile
               </a>
@@ -88,9 +166,8 @@ export function HomePage() {
           ))}
         </div>
       </section>
-
       <section className="bg-[#f8e6d1]">
-        <div className="mx-auto grid max-w-[1440px] gap-10 px-5 py-10 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:px-12">
+        <div className="mx-auto grid max-w-[95%] gap-10 px-5 py-5 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:px-12">
           <Reveal>
             <Eyebrow>About 2ML</Eyebrow>
             <Reveal delay={100}>
@@ -119,7 +196,7 @@ export function HomePage() {
           </Reveal>
           <Reveal delay={200}>
             <img
-              src={images.about}
+              src={images.hero}
               alt="About 2ML"
               className="h-[350] w-full rounded-2xl object-cover shadow-2xl lg:h-[500px]"
             />
@@ -127,7 +204,85 @@ export function HomePage() {
         </div>
       </section>
 
-      <ContactBand />
+      {/* Impact Figures Section */}
+      <section className="relative isolate bg-[#111111] text-white">
+        <img
+          src={images.hero}
+          alt="Impact background"
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/80 via-black/60 to-black/80" />
+        <div className="relative z-10 mx-auto grid max-w-[95%] gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[.8fr_1.2fr] lg:px-12 lg:py-28">
+          <Reveal>
+            <p className="text-xs font-bold uppercase tracking-[.18em] text-[#F5953B]">
+              By the numbers
+            </p>
+            <h2 className="mt-6 text-4xl font-semibold leading-[.98] tracking-[-.065em] sm:text-6xl">
+              Our impact across Africa and beyond.
+            </h2>
+            <p className="mt-6 max-w-sm leading-7 text-white/70">
+              Decades of experience delivering transformational solutions to
+              governments, development partners, utilities and private sector
+              organizations.
+            </p>
+          </Reveal>
+          <div className="grid sm:grid-cols-3 gap-8 items-start">
+            {[
+              {
+                icon: Calendar,
+                value: "14",
+                suffix: "+",
+                label:
+                  "Years of experience delivering transformational solutions",
+              },
+              {
+                icon: Globe,
+                value: "15",
+                suffix: "+",
+                label: "Countries across Africa and beyond",
+              },
+              {
+                icon: Users,
+                value: "100",
+                suffix: "+",
+                label: "Institutional clients served",
+              },
+              {
+                icon: Building2,
+                value: "50",
+                suffix: "+",
+                label: "Government agencies and utilities",
+              },
+              {
+                icon: Database,
+                value: "200",
+                suffix: "+",
+                label: "Successful projects delivered",
+              },
+              {
+                icon: TrendingUp,
+                value: "1000",
+                suffix: "+",
+                label: "Professionals trained and developed",
+              },
+            ].map(({ icon: Icon, value, suffix, label }, index) => (
+              <Reveal key={value} delay={index * 100}>
+                <div className="flex flex-col items-center justify-center gap-4">
+                  <Icon className="h-16 w-16 text-[#F5953B]" strokeWidth={2} />
+                  <CountingNumber
+                    target={value}
+                    suffix={suffix}
+                    duration={2500}
+                  />
+                </div>
+                <p className="mt-6 text-sm leading-6 text-white/75">{label}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Partners title="Our trusted partners" />
     </>
   );
 }
