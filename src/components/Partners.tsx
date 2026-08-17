@@ -122,7 +122,7 @@ export function Partners({
   };
 
   return (
-    <section className="border-t border-black/10 bg-gradient-to-b from-white to-[#f8e6d1]/30 py-16 sm:py-20">
+    <section className="border-t border-black/10 bg-gradient-to-b from-white to-[#f8e6d1]/30 py-10 sm:py-10">
       <div className="mx-auto max-w-[95%] px-5 sm:px-8 lg:px-12">
         <Reveal>
           <h2 className="text-3xl font-semibold tracking-[-.06em] sm:text-4xl">
@@ -202,7 +202,7 @@ export function Partners({
 
         {/* Info Text */}
         <Reveal delay={100}>
-          <p className="mt-12 text-center text-sm text-black/50">
+          <p className="mt-4 text-center text-sm text-black/50">
             Scroll to explore our trusted partners and collaborators
           </p>
         </Reveal>
