@@ -81,7 +81,7 @@ function TeamCard({ member, index, onSelect }: TeamCardProps) {
             <img
               src={member.image}
               alt={member.name}
-              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+              className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-110"
             />
           </div>
 
@@ -394,7 +394,7 @@ export function TeamPage() {
                   <img
                     src={selectedMember.image}
                     alt={selectedMember.name}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-contain"
                   />
                 </div>
                 <div>
@@ -403,6 +403,12 @@ export function TeamPage() {
                   </h3>
                   <p className="mt-1 text-[#8C1E2D] font-semibold">
                     {selectedMember.role}
+                  </p>
+                  <p className="mt-1 text-sm text-black/65">
+                    {calculateYearsOfExperience(
+                      selectedMember.startYear,
+                      selectedMember.experienceField,
+                    )}
                   </p>
                 </div>
               </div>
@@ -413,15 +419,7 @@ export function TeamPage() {
                 ✕
               </button>
             </div>
-            <div className="mt-6 space-y-6">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[.16em] text-[#8C1E2D]">
-                  Bio
-                </p>
-                <p className="mt-2 leading-7 text-black/65">
-                  {selectedMember.bio}
-                </p>
-              </div>
+            <div className="mt-6 max-h-[60vh] space-y-6 overflow-y-auto pr-2">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[.16em] text-[#8C1E2D]">
                   Expertise
@@ -437,26 +435,13 @@ export function TeamPage() {
                   ))}
                 </div>
               </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[.16em] text-[#8C1E2D]">
-                    Education
-                  </p>
-                  <p className="mt-2 text-black/65">
-                    {selectedMember.education}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[.16em] text-[#8C1E2D]">
-                    Experience
-                  </p>
-                  <p className="mt-2 text-black/65">
-                    {calculateYearsOfExperience(
-                      selectedMember.startYear,
-                      selectedMember.experienceField,
-                    )}
-                  </p>
-                </div>
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[.16em] text-[#8C1E2D]">
+                  Bio
+                </p>
+                <p className="mt-2 leading-7 text-black/65">
+                  {selectedMember.bio}
+                </p>
               </div>
             </div>
           </div>
