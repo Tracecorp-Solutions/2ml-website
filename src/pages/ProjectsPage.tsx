@@ -1,8 +1,8 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ContactBand, Eyebrow, PageHero } from "../components/Shared";
+import { Eyebrow } from "../components/Shared";
 import { Reveal } from "../components/Motion";
-import { images } from "../data/site";
+import { ArrowRight } from "lucide-react";
 
 type Project = {
   title: string;
@@ -12,6 +12,72 @@ type Project = {
   description: string;
 };
 type CountryPortfolio = { introduction: string; projects: Project[] };
+
+interface ProjectCardProps {
+  project: Project & { country: string };
+  index: number;
+  onProjectClick: (project: Project & { country: string }) => void;
+}
+
+function ProjectCard({ project, onProjectClick }: ProjectCardProps) {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
+
+  return (
+    <Reveal>
+      <div
+        ref={ref}
+        onClick={() => onProjectClick(project)}
+        className={`group rounded-xl border border-black/10 bg-white p-6 transition-all duration-500 hover:border-[#8C1E2D] hover:shadow-2xl hover:-translate-y-2 cursor-pointer ${
+          isVisible ? "animate-slide-in-left" : "opacity-0"
+        }`}
+      >
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1">
+            <p className="text-xs font-bold uppercase tracking-[.16em] text-[#F5953B] transition-colors duration-300 group-hover:text-[#8C1E2D]">
+              {project.country}
+            </p>
+            <h3 className="mt-3 text-lg font-semibold tracking-[-.045em] transition-all duration-300 group-hover:text-[#8C1E2D] group-hover:text-xl">
+              {project.title}
+            </h3>
+            <p className="mt-3 text-sm leading-6 text-black/65 transition-colors duration-300 group-hover:text-black/80">
+              {project.description.slice(0, 150)}...
+            </p>
+            <div className="mt-4 flex items-center gap-2">
+              <span className="inline-flex items-center rounded-full bg-[#f8e6d1] px-3 py-1 text-xs font-semibold text-[#8C1E2D] transition-all duration-300 group-hover:bg-[#8C1E2D] group-hover:text-white">
+                {project.service}
+              </span>
+            </div>
+          </div>
+          <div className="flex-shrink-0 transition-all duration-300 group-hover:translate-x-1">
+            <ArrowRight className="h-5 w-5 text-[#8C1E2D] transition-all duration-300 group-hover:text-[#F5953B]" />
+          </div>
+        </div>
+      </div>
+    </Reveal>
+  );
+}
 
 const portfolio: Record<string, CountryPortfolio> = {
   Nigeria: {
@@ -305,21 +371,7 @@ export function ProjectsPage() {
 
   return (
     <>
-      <PageHero
-        kicker="Projects"
-        title={
-          <>
-            Sustainable impact
-            <br />
-            <em className="font-serif font-medium text-[#8C1E2D]">
-              across Africa and beyond.
-            </em>
-          </>
-        }
-        description="Over the past decade, 2ML Consulting Limited has partnered with governments, development partners, utilities and public institutions to deliver transformative solutions across Africa, Asia and the Caribbean."
-        picture={images.city}
-      />
-      <section className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 lg:px-12 lg:py-32">
+      <section className="mx-auto max-w-[95%] px-5 py-20 sm:px-8 lg:px-12 lg:py-32">
         <div className="flex flex-col gap-10 md:flex-row">
           {/* Search and Filter Section */}
           <div className="space-y-8 md:w-80 md:flex-shrink-0">
@@ -393,34 +445,12 @@ export function ProjectsPage() {
             </Reveal>
             <div className="mt-8 grid gap-6 md:grid-cols-2">
               {filteredProjects.map((project, index) => (
-                <Reveal
+                <ProjectCard
                   key={`${project.country}-${project.title}`}
-                  delay={index * 80}
-                >
-                  <div
-                    onClick={() => handleProjectClick(project)}
-                    className="group rounded-xl border border-black/10 bg-white p-6 transition-all duration-300 hover:border-[#8C1E2D] hover:shadow-xl hover:-translate-y-1 cursor-pointer"
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex-1">
-                        <p className="text-xs font-bold uppercase tracking-[.16em] text-[#8C1E2D]">
-                          {project.country}
-                        </p>
-                        <h3 className="mt-3 text-lg font-semibold tracking-[-.045em] transition-colors duration-300 group-hover:text-[#8C1E2D]">
-                          {project.title}
-                        </h3>
-                        <p className="mt-3 text-sm leading-6 text-black/65">
-                          {project.description.slice(0, 150)}...
-                        </p>
-                        <div className="mt-4 flex items-center gap-2">
-                          <span className="inline-flex items-center rounded-full bg-[#f8e6d1] px-3 py-1 text-xs font-semibold text-[#8C1E2D]">
-                            {project.service}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Reveal>
+                  project={project}
+                  index={index}
+                  onProjectClick={handleProjectClick}
+                />
               ))}
             </div>
             {filteredProjects.length === 0 && (
@@ -435,7 +465,6 @@ export function ProjectsPage() {
           </div>
         </div>
       </section>
-      <ContactBand />
     </>
   );
 }

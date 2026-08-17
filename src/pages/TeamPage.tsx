@@ -1,7 +1,15 @@
-import { useState } from "react";
-import { ContactBand, Eyebrow, PageHero } from "../components/Shared";
+import { useState, useRef, useEffect } from "react";
+import { Eyebrow } from "../components/Shared";
 import { Reveal } from "../components/Motion";
 import { images } from "../data/site";
+import { ChevronRight } from "lucide-react";
+
+// Utility function to calculate years of experience
+function calculateYearsOfExperience(startYear: number, field: string): string {
+  const currentYear = new Date().getFullYear();
+  const yearsOfExperience = currentYear - startYear;
+  return `${yearsOfExperience}+ years in ${field}`;
+}
 
 const disciplines = [
   "Institutional development & capacity building",
@@ -23,8 +31,112 @@ type TeamMember = {
   bio: string;
   expertise: string[];
   education: string;
-  experience: string;
+  startYear: number;
+  experienceField: string;
 };
+
+interface TeamCardProps {
+  member: TeamMember;
+  index: number;
+  onSelect: (member: TeamMember) => void;
+}
+
+function TeamCard({ member, index, onSelect }: TeamCardProps) {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
+
+  return (
+    <Reveal delay={index * 80}>
+      <div
+        ref={ref}
+        onClick={() => onSelect(member)}
+        className={`group cursor-pointer rounded-2xl border border-black/10 bg-white overflow-hidden transition-all duration-500 hover:border-[#8C1E2D] hover:shadow-2xl hover:-translate-y-2 ${
+          isVisible ? "animate-slide-in-left" : "opacity-0"
+        }`}
+      >
+        <div className="flex flex-col sm:flex-row gap-6 p-6">
+          {/* Image */}
+          <div className="h-32 w-32 flex-shrink-0 overflow-hidden rounded-xl bg-gray-100">
+            <img
+              src={member.image}
+              alt={member.name}
+              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+            />
+          </div>
+
+          {/* Content */}
+          <div className="flex-1 flex flex-col justify-between">
+            <div>
+              <h3 className="text-lg font-semibold tracking-[-.045em] transition-colors duration-300 group-hover:text-[#8C1E2D]">
+                {member.name}
+              </h3>
+              <p className="mt-1 text-sm text-[#8C1E2D] font-semibold">
+                {member.role}
+              </p>
+
+              {/* Expertise */}
+              <div className="mt-3">
+                <p className="text-xs font-bold uppercase tracking-[.16em] text-[#8C1E2D] mb-2">
+                  Expertise
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {member.expertise.slice(0, 3).map((skill) => (
+                    <span
+                      key={skill}
+                      className="inline-flex items-center rounded-full bg-[#f8e6d1] px-2 py-1 text-xs font-semibold text-[#8C1E2D] transition-all duration-300 group-hover:bg-[#8C1E2D] group-hover:text-white"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Experience */}
+              <div className="mt-4">
+                <p className="text-xs font-bold uppercase tracking-[.16em] text-[#8C1E2D] mb-1">
+                  Experience
+                </p>
+                <p className="text-sm text-black/65 group-hover:text-black/80 transition-colors duration-300">
+                  {calculateYearsOfExperience(
+                    member.startYear,
+                    member.experienceField,
+                  )}
+                </p>
+              </div>
+            </div>
+
+            {/* Expand Indicator */}
+            <div className="mt-4 flex items-center gap-2 text-[#8C1E2D] font-semibold text-sm transition-all duration-300 group-hover:gap-3">
+              <span>View details</span>
+              <ChevronRight className="h-4 w-4 transition-all duration-300 group-hover:translate-x-1" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </Reveal>
+  );
+}
 
 const teamMembers: TeamMember[] = [
   {
@@ -40,7 +152,8 @@ const teamMembers: TeamMember[] = [
       "Project Oversight",
     ],
     education: "PhD in Water Resources Management",
-    experience: "20+ years in water sector leadership",
+    startYear: 2004,
+    experienceField: "water sector leadership",
   },
   {
     id: "2",
@@ -55,7 +168,8 @@ const teamMembers: TeamMember[] = [
       "Business Operations",
     ],
     education: "MBA in Operations Management",
-    experience: "18+ years in operations management",
+    startYear: 2008,
+    experienceField: "operations management",
   },
   {
     id: "3",
@@ -70,7 +184,8 @@ const teamMembers: TeamMember[] = [
       "Financial Governance",
     ],
     education: "MSc in Finance",
-    experience: "15+ years in financial management",
+    startYear: 2011,
+    experienceField: "financial management",
   },
   {
     id: "4",
@@ -85,7 +200,8 @@ const teamMembers: TeamMember[] = [
       "Water Law",
     ],
     education: "LLM in Environmental Law",
-    experience: "12+ years in legal advisory",
+    startYear: 2014,
+    experienceField: "legal advisory",
   },
 ];
 
@@ -103,7 +219,8 @@ const experts: TeamMember[] = [
       "Organizational Transformation",
     ],
     education: "PhD in Water Resources Management",
-    experience: "20+ years in institutional development",
+    startYear: 2004,
+    experienceField: "institutional development",
   },
   {
     id: "6",
@@ -118,7 +235,8 @@ const experts: TeamMember[] = [
       "Information Systems",
     ],
     education: "MSc in GIS",
-    experience: "15+ years in GIS and mapping",
+    startYear: 2011,
+    experienceField: "GIS and mapping",
   },
   {
     id: "7",
@@ -133,7 +251,8 @@ const experts: TeamMember[] = [
       "Operational Efficiency",
     ],
     education: "MSc in Water Engineering",
-    experience: "18+ years in operations and maintenance",
+    startYear: 2008,
+    experienceField: "operations and maintenance",
   },
   {
     id: "8",
@@ -148,7 +267,8 @@ const experts: TeamMember[] = [
       "Capacity Building",
     ],
     education: "MBA in Organizational Development",
-    experience: "16+ years in organizational development",
+    startYear: 2010,
+    experienceField: "organizational development",
   },
   {
     id: "9",
@@ -163,7 +283,8 @@ const experts: TeamMember[] = [
       "Water Law",
     ],
     education: "LLM in Environmental Law",
-    experience: "12+ years in legal advisory",
+    startYear: 2014,
+    experienceField: "legal advisory",
   },
   {
     id: "10",
@@ -178,7 +299,8 @@ const experts: TeamMember[] = [
       "Financial Governance",
     ],
     education: "MSc in Finance",
-    experience: "15+ years in financial management",
+    startYear: 2011,
+    experienceField: "financial management",
   },
 ];
 
@@ -187,171 +309,48 @@ export function TeamPage() {
 
   return (
     <>
-      <PageHero
-        kicker="Our management team"
-        title={
-          <>
-            Expertise that
-            <br />
-            <em className="font-serif font-medium text-[#8C1E2D]">
-              moves institutions.
-            </em>
-          </>
-        }
-        description={
-          <>
-            Our permanent multidisciplinary team is complemented by an extensive
-            network of regional and international technical associates, enabling
-            us to deliver integrated solutions tailored to the unique needs of
-            every assignment. Our experts bring extensive experience across
-            institutional development and capacity building, utility management,
-            performance improvement, water supply and sanitation engineering,
-            civil and electro-mechanical engineering, water resources
-            management, hydrology, WASH policy and regulatory development, water
-            law, governance, legal advisory, WASH finance, financial management,
-            water sector economics, environmental and natural resources
-            management, gender and social development, human resource
-            management, commercial operations and customer care, operations and
-            maintenance, Geographic Information Systems, surveying and mapping,
-            information management systems, information technology, data
-            analytics, monitoring, evaluation and learning, as well as research,
-            training and knowledge management.
-            <br />
-            <br />
-            This breadth of expertise allows 2ML Consulting Limited to assemble
-            highly skilled multidisciplinary teams that combine the best
-            international practices with local knowledge to deliver practical,
-            innovative and sustainable solutions for governments, development
-            partners, utilities and private sector organizations.
-          </>
-        }
-        picture={images.team}
-      />
-      {/* <section className="mx-auto max-w-[1440px] px-5 py-10 sm:px-8 lg:px-12">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-          <div>
-            <Reveal>
-              <Eyebrow>Our people</Eyebrow>
-            </Reveal>
-            <Reveal delay={100}>
-              <h2 className="max-w-4xl text-4xl font-semibold leading-[1] tracking-[-.065em] sm:text-6xl">
-                A team shaped around the complete challenge.
-              </h2>
-              <p className="mt-8 max-w-4xl text-lg leading-8 text-black/65">
-                Our permanent multidisciplinary team is complemented by an
-                extensive network of regional and international technical
-                associates, enabling us to deliver integrated solutions tailored
-                to the unique needs of every assignment. Our experts bring
-                extensive experience across institutional development and
-                capacity building, utility management, performance improvement,
-                water supply and sanitation engineering, civil and
-                electro-mechanical engineering, water resources management,
-                hydrology, WASH policy and regulatory development, water law,
-                governance, legal advisory, WASH finance, financial management,
-                water sector economics, environmental and natural resources
-                management, gender and social development, human resource
-                management, commercial operations and customer care, operations
-                and maintenance, Geographic Information Systems, surveying and
-                mapping, information management systems, information technology,
-                data analytics, monitoring, evaluation and learning, as well as
-                research, training and knowledge management.
-              </p>
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-black/65">
-                This breadth of expertise allows 2ML Consulting Limited to
-                assemble highly skilled multidisciplinary teams that combine the
-                best international practices with local knowledge to deliver
-                practical, innovative and sustainable solutions for governments,
-                development partners, utilities and private sector
-                organizations.
-              </p>
-            </Reveal>
-          </div>
-          <Reveal delay={150}>
-            <img
-              src={images.team}
-              alt="Our Team"
-              className="h-full min-h-[300px] w-full rounded-2xl object-cover shadow-xl"
-            />
-          </Reveal>
-        </div>
-      </section> */}
-
       {/* Team Members Section */}
-      <section className="mx-auto max-w-[1440px] px-5 py-10 sm:px-8 lg:px-12">
+      <section className="mx-auto max-w-[95%] px-5 py-10 mt-10 sm:px-8 lg:px-12">
         <Reveal>
           <Eyebrow>Top management</Eyebrow>
           <h2 className="mt-6 max-w-3xl text-4xl font-semibold leading-[.98] tracking-[-.06em] sm:text-5xl">
             Leadership driving impact.
           </h2>
         </Reveal>
-        <div className="mt-8 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-8 md:grid-cols-2">
           {teamMembers.map((member, index) => (
-            <Reveal key={member.id} delay={index * 80}>
-              <div
-                onClick={() => setSelectedMember(member)}
-                className="group cursor-pointer rounded-2xl border border-black/10 bg-white p-6 transition-all duration-300 hover:border-[#8C1E2D] hover:shadow-xl hover:-translate-y-1"
-              >
-                <div className="aspect-square overflow-hidden rounded-xl bg-gray-100">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="h-full w-full object-fill transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <h3 className="mt-4 text-lg font-semibold tracking-[-.045em] transition-colors duration-300 group-hover:text-[#8C1E2D]">
-                  {member.name}
-                </h3>
-                <p className="mt-2 text-sm text-[#8C1E2D] font-semibold">
-                  {member.role}
-                </p>
-                <p className="mt-3 text-sm leading-6 text-black/65 line-clamp-3">
-                  {member.bio}
-                </p>
-              </div>
-            </Reveal>
+            <TeamCard
+              key={member.id}
+              member={member}
+              index={index}
+              onSelect={setSelectedMember}
+            />
           ))}
         </div>
       </section>
 
       {/* Experts Section */}
-      <section className="mx-auto max-w-[1440px] px-5 pb-10 sm:px-8 lg:px-12">
+      <section className="mx-auto max-w-[95%] px-5 pb-10 sm:px-8 lg:px-12">
         <Reveal>
           <Eyebrow>Our experts</Eyebrow>
           <h2 className="mt-6 max-w-3xl text-4xl font-semibold leading-[.98] tracking-[-.06em] sm:text-5xl">
             Specialist knowledge driving results.
           </h2>
         </Reveal>
-        <div className="mt-8 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-8 md:grid-cols-2">
           {experts.map((expert, index) => (
-            <Reveal key={expert.id} delay={index * 80}>
-              <div
-                onClick={() => setSelectedMember(expert)}
-                className="group cursor-pointer rounded-2xl border border-black/10 bg-white p-6 transition-all duration-300 hover:border-[#8C1E2D] hover:shadow-xl hover:-translate-y-1"
-              >
-                <div className="aspect-square overflow-hidden rounded-xl bg-gray-100">
-                  <img
-                    src={expert.image}
-                    alt={expert.name}
-                    className="h-full w-full object-fill transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <h3 className="mt-4 text-lg font-semibold tracking-[-.045em] transition-colors duration-300 group-hover:text-[#8C1E2D]">
-                  {expert.name}
-                </h3>
-                <p className="mt-2 text-sm text-[#8C1E2D] font-semibold">
-                  {expert.role}
-                </p>
-                <p className="mt-3 text-sm leading-6 text-black/65 line-clamp-3">
-                  {expert.bio}
-                </p>
-              </div>
-            </Reveal>
+            <TeamCard
+              key={expert.id}
+              member={expert}
+              index={index}
+              onSelect={setSelectedMember}
+            />
           ))}
         </div>
       </section>
 
       <section className="bg-[#f8e6d1]">
-        <div className="mx-auto max-w-[1440px] px-5 py-10 sm:px-8 lg:px-12">
+        <div className="mx-auto max-w-[95%] px-5 py-10 sm:px-8 lg:px-12">
           <Reveal>
             <Eyebrow>Multidisciplinary capability</Eyebrow>
             <h2 className="mt-6 max-w-3xl text-4xl font-semibold leading-[.98] tracking-[-.06em] sm:text-5xl">
@@ -452,7 +451,10 @@ export function TeamPage() {
                     Experience
                   </p>
                   <p className="mt-2 text-black/65">
-                    {selectedMember.experience}
+                    {calculateYearsOfExperience(
+                      selectedMember.startYear,
+                      selectedMember.experienceField,
+                    )}
                   </p>
                 </div>
               </div>
@@ -460,8 +462,6 @@ export function TeamPage() {
           </div>
         </div>
       )}
-
-      <ContactBand />
     </>
   );
 }

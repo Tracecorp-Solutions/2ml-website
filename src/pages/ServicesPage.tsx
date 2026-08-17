@@ -1,6 +1,154 @@
-import { ContactBand, Eyebrow, PageHero } from "../components/Shared";
+import { Eyebrow } from "../components/Shared";
 import { Reveal } from "../components/Motion";
 import { images } from "../data/site";
+import { useState, useRef, useEffect } from "react";
+
+interface Service {
+  title: string;
+  copy: string;
+  experience: string[];
+}
+
+interface ServiceCardProps {
+  service: Service;
+  index: number;
+  isEven: boolean;
+  serviceImages: string[];
+}
+
+function ServiceCard({
+  service,
+  index,
+  isEven,
+  serviceImages,
+}: ServiceCardProps) {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
+
+  return (
+    <Reveal delay={index * 100}>
+      <div
+        ref={ref}
+        className={`group grid gap-8 lg:grid-cols-[80px_1fr_1fr] transition-all duration-500 ${
+          isVisible
+            ? isEven
+              ? "animate-slide-in-left"
+              : "animate-slide-in-right"
+            : "opacity-0"
+        }`}
+      >
+        <div className="relative flex items-start justify-center lg:items-center">
+          <div className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full bg-[#8C1E2D] text-sm font-bold text-white transition-all duration-300 group-hover:scale-125 group-hover:bg-[#F5953B] group-hover:shadow-lg group-hover:shadow-[#F5953B]/50">
+            {index + 1}
+          </div>
+          {index < services.length - 1 && (
+            <div className="absolute left-1/2 top-8 h-full w-0.5 -translate-x-1/2 bg-gradient-to-b from-[#8C1E2D] to-[#F5953B] transition-all duration-300 group-hover:w-1" />
+          )}
+        </div>
+        {isEven ? (
+          <>
+            <div className="space-y-4 transition-all duration-300 group-hover:translate-x-2">
+              <h2 className="text-2xl font-semibold tracking-[-.05em] transition-all duration-300 group-hover:text-[#8C1E2D] group-hover:text-3xl sm:text-3xl">
+                {service.title}
+              </h2>
+              <p className="leading-7 text-black/65 transition-colors duration-300 group-hover:text-black/80">
+                {service.copy}
+              </p>
+              {service.experience.length > 0 && (
+                <div className="mt-6">
+                  <p className="text-xs font-bold uppercase tracking-[.16em] text-[#8C1E2D] transition-colors duration-300 group-hover:text-[#F5953B]">
+                    Representative experience
+                  </p>
+                  <ul className="mt-3 space-y-2">
+                    {service.experience.map((item: string, i: number) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-2 text-sm leading-6 text-black/65 transition-all duration-300 group-hover:text-black/80 group-hover:translate-x-1"
+                        style={{
+                          transitionDelay: `${i * 50}ms`,
+                        }}
+                      >
+                        <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#F5953B] transition-all duration-300 group-hover:scale-125" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+            <div className="flex flex-col overflow-hidden rounded-2xl transition-all duration-300 group-hover:shadow-2xl group-hover:-translate-y-2">
+              <img
+                src={serviceImages[index % serviceImages.length]}
+                alt={service.title}
+                className="h-full min-h-[250px] w-full object-cover transition-all duration-300"
+              />
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="lg:col-start-2 flex flex-col overflow-hidden rounded-2xl transition-all duration-300 group-hover:shadow-2xl group-hover:-translate-y-2">
+              <img
+                src={serviceImages[index % serviceImages.length]}
+                alt={service.title}
+                className="h-full min-h-[250px] w-full object-cover transition-all duration-300"
+              />
+            </div>
+            <div className="lg:col-start-3 space-y-4 transition-all duration-300 group-hover:-translate-x-2">
+              <h2 className="text-2xl font-semibold tracking-[-.05em] transition-all duration-300 group-hover:text-[#8C1E2D] group-hover:text-3xl sm:text-3xl">
+                {service.title}
+              </h2>
+              <p className="leading-7 text-black/65 transition-colors duration-300 group-hover:text-black/80">
+                {service.copy}
+              </p>
+              {service.experience.length > 0 && (
+                <div className="mt-6">
+                  <p className="text-xs font-bold uppercase tracking-[.16em] text-[#8C1E2D] transition-colors duration-300 group-hover:text-[#F5953B]">
+                    Representative experience
+                  </p>
+                  <ul className="mt-3 space-y-2">
+                    {service.experience.map((item: string, i: number) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-2 text-sm leading-6 text-black/65 transition-all duration-300 group-hover:text-black/80 group-hover:-translate-x-1"
+                        style={{
+                          transitionDelay: `${i * 50}ms`,
+                        }}
+                      >
+                        <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#F5953B] transition-all duration-300 group-hover:scale-125" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </>
+        )}
+      </div>
+    </Reveal>
+  );
+}
 
 const services = [
   {
@@ -61,15 +209,15 @@ const services = [
       "Institutional Strengthening Programmes across multiple African utilities",
     ],
   },
-  {
-    title: "Water Supply, Sanitation & Hygiene (WASH)",
-    copy: "Our WASH experience covers the full spectrum of urban and rural water supply, sanitation and hygiene services. We provide advisory services that strengthen institutional performance, improve service delivery and support sustainable sector development. Our multidisciplinary team has extensive experience in sanitation planning, hygiene promotion, city-wide inclusive sanitation, utility strengthening, climate-resilient planning, financing strategies and institutional capacity development.",
-    experience: [
-      "Nigeria National WASH Policy",
-      "South Sudan Urban Water Utilities",
-      "Ethiopia Utility Strengthening Programme",
-    ],
-  },
+  // {
+  //   title: "Water Supply, Sanitation & Hygiene (WASH)",
+  //   copy: "Our WASH experience covers the full spectrum of urban and rural water supply, sanitation and hygiene services. We provide advisory services that strengthen institutional performance, improve service delivery and support sustainable sector development. Our multidisciplinary team has extensive experience in sanitation planning, hygiene promotion, city-wide inclusive sanitation, utility strengthening, climate-resilient planning, financing strategies and institutional capacity development.",
+  //   experience: [
+  //     "Nigeria National WASH Policy",
+  //     "South Sudan Urban Water Utilities",
+  //     "Ethiopia Utility Strengthening Programme",
+  //   ],
+  // },
   {
     title: "GIS, Surveys & Digital Solutions",
     copy: "2ML integrates modern technologies and digital tools into institutional strengthening programmes to improve planning, decision-making and operational performance. Our expertise includes Geographic Information Systems (GIS), customer enumeration, utility mapping, network surveys, spatial analysis, data management, digital information systems and decision-support tools that enhance operational efficiency.",
@@ -99,21 +247,7 @@ const services = [
 export function ServicesPage() {
   return (
     <>
-      <PageHero
-        kicker="Our services & experience"
-        title={
-          <>
-            Transformational solutions
-            <br />
-            <em className="font-serif font-medium text-[#8C1E2D]">
-              for lasting impact.
-            </em>
-          </>
-        }
-        description="For over a decade, 2ML Consulting Limited has partnered with governments, development partners, utilities and private sector organizations to strengthen institutions, improve service delivery and drive sustainable transformation."
-        picture={images.map}
-      />
-      <section className="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 lg:px-12 lg:py-32">
+      <section className="mx-auto max-w-[95%] px-5 py-20 sm:px-8 lg:px-12">
         <Reveal>
           <Eyebrow>Our service lines</Eyebrow>
           <p className="mt-6 max-w-4xl text-xl leading-8 text-black/65">
@@ -139,96 +273,17 @@ export function ServicesPage() {
             ];
             const isEven = index % 2 === 0;
             return (
-              <Reveal key={service.title} delay={index * 100}>
-                <div className="grid gap-8 lg:grid-cols-[80px_1fr_1fr]">
-                  <div className="relative flex items-start justify-center lg:items-center">
-                    <div className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full bg-[#8C1E2D] text-sm font-bold text-white transition-all duration-300 hover:scale-110 hover:bg-[#F5953B]">
-                      {index + 1}
-                    </div>
-                    {index < services.length - 1 && (
-                      <div className="absolute left-1/2 top-8 h-full w-0.5 -translate-x-1/2 bg-gradient-to-b from-[#8C1E2D] to-[#F5953B]" />
-                    )}
-                  </div>
-                  {isEven ? (
-                    <>
-                      <div className="space-y-4">
-                        <h2 className="text-2xl font-semibold tracking-[-.05em] transition-colors duration-300 group-hover:text-[#8C1E2D] sm:text-3xl">
-                          {service.title}
-                        </h2>
-                        <p className="leading-7 text-black/65">
-                          {service.copy}
-                        </p>
-                        {service.experience.length > 0 && (
-                          <div className="mt-6">
-                            <p className="text-xs font-bold uppercase tracking-[.16em] text-[#8C1E2D]">
-                              Representative experience
-                            </p>
-                            <ul className="mt-3 space-y-2">
-                              {service.experience.map((item) => (
-                                <li
-                                  key={item}
-                                  className="flex items-start gap-2 text-sm leading-6 text-black/65"
-                                >
-                                  <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#F5953B]" />
-                                  {item}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
-                      </div>
-                      <div className="flex flex-col">
-                        <img
-                          src={serviceImages[index % serviceImages.length]}
-                          alt={service.title}
-                          className="h-full min-h-[250px] w-full rounded-2xl object-cover shadow-xl"
-                        />
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="lg:col-start-2 flex flex-col">
-                        <img
-                          src={serviceImages[index % serviceImages.length]}
-                          alt={service.title}
-                          className="h-full min-h-[250px] w-full rounded-2xl object-cover shadow-xl"
-                        />
-                      </div>
-                      <div className="lg:col-start-3 space-y-4">
-                        <h2 className="text-2xl font-semibold tracking-[-.05em] transition-colors duration-300 group-hover:text-[#8C1E2D] sm:text-3xl">
-                          {service.title}
-                        </h2>
-                        <p className="leading-7 text-black/65">
-                          {service.copy}
-                        </p>
-                        {service.experience.length > 0 && (
-                          <div className="mt-6">
-                            <p className="text-xs font-bold uppercase tracking-[.16em] text-[#8C1E2D]">
-                              Representative experience
-                            </p>
-                            <ul className="mt-3 space-y-2">
-                              {service.experience.map((item) => (
-                                <li
-                                  key={item}
-                                  className="flex items-start gap-2 text-sm leading-6 text-black/65"
-                                >
-                                  <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#F5953B]" />
-                                  {item}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
-                      </div>
-                    </>
-                  )}
-                </div>
-              </Reveal>
+              <ServiceCard
+                key={service.title}
+                service={service}
+                index={index}
+                isEven={isEven}
+                serviceImages={serviceImages}
+              />
             );
           })}
         </div>
       </section>
-      <ContactBand />
     </>
   );
 }
