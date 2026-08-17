@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import { Reveal } from "./Motion";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 
 import AFD from "../assets/AFD.png";
 import Afwa from "../assets/Afwa.jpeg";
@@ -49,11 +49,6 @@ const partners = [
   { name: "Water.org", logo: WaterOrg, url: "https://water.org/" },
   { name: "WBG", logo: Wbg, url: "https://www.worldbank.org/" },
 ];
-interface Partner {
-  name: string;
-  logo: string;
-  url?: string;
-}
 
 interface PartnersProps {
   // partners: Partner[];
@@ -66,36 +61,65 @@ export function Partners({
   description,
 }: PartnersProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const scrollPositionRef = useRef(0);
   const [isHovering, setIsHovering] = useState(false);
 
-  // Auto-scroll functionality with infinite loop
+  // Auto-scroll functionality with seamless right-to-left loop
   useEffect(() => {
     if (!scrollContainerRef.current) return;
 
     const container = scrollContainerRef.current;
     let animationId: number;
-    let scrollPosition = 0;
-    const scrollSpeed = 0.5; // Pixels per frame
+    const scrollSpeed = 0.8;
 
     const autoScrollLoop = () => {
       if (!isHovering && container.scrollWidth > container.clientWidth) {
-        scrollPosition += scrollSpeed;
-        container.scrollLeft = Math.floor(scrollPosition);
+        const maxScroll = container.scrollWidth / 2;
+        scrollPositionRef.current += scrollSpeed;
 
-        // Infinite loop - seamlessly restart
-        if (scrollPosition >= container.scrollWidth - container.clientWidth) {
-          scrollPosition = 0;
-          container.scrollLeft = 0;
+        if (scrollPositionRef.current >= maxScroll) {
+          scrollPositionRef.current -= maxScroll;
         }
+
+        container.scrollLeft = Math.floor(scrollPositionRef.current);
       }
       animationId = requestAnimationFrame(autoScrollLoop);
     };
 
-    // Start immediately
     animationId = requestAnimationFrame(autoScrollLoop);
 
     return () => cancelAnimationFrame(animationId);
   }, [isHovering]);
+
+  const scrollAmount = 300;
+
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const maxScroll = container.scrollWidth / 2;
+      scrollPositionRef.current -= scrollAmount;
+
+      if (scrollPositionRef.current < 0) {
+        scrollPositionRef.current += maxScroll;
+      }
+
+      container.scrollLeft = Math.floor(scrollPositionRef.current);
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const maxScroll = container.scrollWidth / 2;
+      scrollPositionRef.current += scrollAmount;
+
+      if (scrollPositionRef.current >= maxScroll) {
+        scrollPositionRef.current -= maxScroll;
+      }
+
+      container.scrollLeft = Math.floor(scrollPositionRef.current);
+    }
+  };
 
   return (
     <section className="border-t border-black/10 bg-gradient-to-b from-white to-[#f8e6d1]/30 py-16 sm:py-20">
@@ -122,13 +146,33 @@ export function Partners({
           {/* Gradient Fade Right */}
           <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-white to-transparent" />
 
+          {/* Left Arrow */}
+          <button
+            type="button"
+            onClick={scrollLeft}
+            className="group absolute left-0 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/90 p-2 shadow-lg transition-all duration-300 hover:bg-[#8C1E2D] hover:text-white hover:scale-110 focus:outline-none"
+            aria-label="Scroll partners left"
+          >
+            <ChevronLeft className="h-6 w-6 text-[#8C1E2D] transition-colors duration-300 group-hover:text-white" />
+          </button>
+
+          {/* Right Arrow */}
+          <button
+            type="button"
+            onClick={scrollRight}
+            className="group absolute right-0 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/90 p-2 shadow-lg transition-all duration-300 hover:bg-[#8C1E2D] hover:text-white hover:scale-110 focus:outline-none"
+            aria-label="Scroll partners right"
+          >
+            <ChevronRight className="h-6 w-6 text-[#8C1E2D] transition-colors duration-300 group-hover:text-white" />
+          </button>
+
           {/* Scroll Container */}
           <div
             ref={scrollContainerRef}
-            className="flex gap-8 overflow-hidden pb-4 select-none"
+            className="flex gap-8 overflow-x-auto scroll-smooth pb-4 px-12 select-none [&::-webkit-scrollbar]:hidden"
           >
-            {partners.map((partner, index) => (
-              <Reveal key={partner.name} delay={index * 50}>
+            {[...partners, ...partners].map((partner, index) => (
+              <Reveal key={`${partner.name}-${index}`} delay={index * 50}>
                 <a
                   href={partner.url || "#"}
                   target={partner.url ? "_blank" : undefined}

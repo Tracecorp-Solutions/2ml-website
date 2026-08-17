@@ -26,8 +26,8 @@ function Footer() {
     <footer className="bg-[#111111] text-white">
       <div className="mx-auto grid max-w-[95%] gap-12 px-5 py-8 sm:px-8 md:grid-cols-[1.2fr_1fr_1fr]">
         <div>
-          <div className="text-2xl font-extrabold tracking-[-.07em]">
-            2ML <span className="font-medium">CONSULTING</span>
+          <div className="text-2xl font-extrabold tracking-[-.07em] text-[#8C1E2D]">
+            2ML <span className="font-medium">CONSULTING Ltd</span>
           </div>
           <p className="mt-5 max-w-xs text-sm leading-6 text-white/65">
             Trusted thinking and practical delivery for organisations building a
