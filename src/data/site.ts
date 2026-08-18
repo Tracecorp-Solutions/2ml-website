@@ -1,49 +1,51 @@
-export const images = {
-  hero: '/src/assets/assets.png',
-  community: '/src/assets/executiveleadership.png',
-  map: '/src/assets/gis.png',
-  meeting: '/src/assets/stakeholder.png',
-  field: '/src/assets/fieldoperations.png',
-  team: '/src/assets/watertreatement.png',
-  william: '/src/assets/DrWilliam.jpg',
-  gilbert: '/src/assets/Gilbert.jpg',
-  rosemary: '/src/assets/rosemary.jpg',
-  lorna: '/src/assets/Rorna.jpeg',
-  vincent: '/src/assets/vincent.jpg',
-  sam: '/src/assets/sam.png',
-  erp: '/src/assets/erp.png',
-  financialmanagement: '/src/assets/financialmanagement.png',
-  gissolutions: '/src/assets/gissolutions.png',
-  institutionaldevelopment: '/src/assets/institutionaldevelopment.png',
-  pip: '/src/assets/pip.png',
-  policy: '/src/assets/policy.png',
-  research: '/src/assets/research.png',
-  strategicplanning: '/src/assets/strategicplanning.png',
-  utilitymanagement: '/src/assets/utilitymanagement.png',
-  // Partner logos
+import hero from '../assets/assets.png'
+import community from '../assets/leadership.png'
+import map from '../assets/gis.png'
+import meeting from '../assets/stakeholder.png'
+import field from '../assets/fieldoperations.png'
+import team from '../assets/watertreatment.png'
+import william from '../assets/DrWilliam.jpg'
+import gilbert from '../assets/Gilbert.jpg'
+import rosemary from '../assets/rosemary.jpg'
+import lorna from '../assets/Rorna.jpeg'
+import vincent from '../assets/vincent.jpg'
+import sam from '../assets/sam.png'
+import erp from '../assets/erp.png'
+import financialmanagement from '../assets/financialmanagement.png'
+import gissolutions from '../assets/gissolutions.png'
+import institutionaldevelopment from '../assets/institutionaldevelopment.png'
+import pip from '../assets/pip.png'
+import policy from '../assets/policy.png'
+import research from '../assets/research.png'
+import strategicplanning from '../assets/strategicplanning.png'
+import utilitymanagement from '../assets/utilitymanagement.png'
+import profilePdfFile from '../assets/2ML-Consulting-Limited-Updated-Profile.pdf?url'
 
-  partners: [
-    '/src/assets/AFD.png',
-    '/src/assets/Afwa.jpeg',
-    '/src/assets/Ministry-of-Water-and-Environment.jpg',
-    '/src/assets/RTI.png',
-    '/src/assets/afdb.png',
-    '/src/assets/amane.jpg',
-    '/src/assets/giz.png',
-    '/src/assets/global.png',
-    '/src/assets/gwi.png',
-    '/src/assets/icrc.jpg',
-    '/src/assets/idev.jpg',
-    '/src/assets/isdb.png',
-    '/src/assets/nwsc.png',
-    '/src/assets/rock.png',
-    '/src/assets/sustainablewater.jpg',
-    '/src/assets/unicef.png',
-    '/src/assets/usaid.png',
-    '/src/assets/water.org.png',
-    '/src/assets/wbg.png',
-  ],
+export const images = {
+  hero,
+  community,
+  map,
+  meeting,
+  field,
+  team,
+  william,
+  gilbert,
+  rosemary,
+  lorna,
+  vincent,
+  sam,
+  erp,
+  financialmanagement,
+  gissolutions,
+  institutionaldevelopment,
+  pip,
+  policy,
+  research,
+  strategicplanning,
+  utilitymanagement,
 }
+
+export const profilePDF = profilePdfFile
 
 export const navigation = [
   { to: '/', label: 'Home' },
