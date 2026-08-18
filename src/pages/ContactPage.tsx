@@ -8,13 +8,12 @@ import {
   FacebookIcon,
   LinkedinIcon,
 } from "../components/SocialIcons";
+import { profilePDF } from "../data/site";
 
 export function ContactPage() {
   return (
     <>
-      <Partners title="Our trusted partners" />
-
-      <section className="mx-auto grid max-w-[95%] gap-14 px-5 py-10 sm:px-8 lg:grid-cols-[.8fr_1.2fr] lg:px-12">
+      <section className="mx-auto grid max-w-[95%] gap-14 mt-16 px-5 py-10 sm:px-8 lg:grid-cols-[.8fr_1.2fr] lg:px-12">
         <Reveal>
           <Eyebrow>Our offices</Eyebrow>
           <h2 className="mt-6 text-4xl font-semibold leading-[.98] tracking-[-.06em]">
@@ -113,7 +112,7 @@ export function ContactPage() {
             </div>
             <a
               className="inline-flex items-center gap-2 mt-4 rounded-full bg-[#8C1E2D] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#6f1724] hover:shadow-lg"
-              href="/src/assets/2ML-Consulting-Limited-Updated-Profile.pdf"
+              href={profilePDF}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -126,6 +125,7 @@ export function ContactPage() {
           <ContactForm />
         </Reveal>
       </section>
+      <Partners title="Our trusted partners" />
     </>
   );
 }

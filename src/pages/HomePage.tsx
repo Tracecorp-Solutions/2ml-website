@@ -4,7 +4,7 @@ import { Arrow, Eyebrow } from "../components/Shared";
 import { Reveal } from "../components/Motion";
 import { Partners } from "../components/Partners";
 import { TypewriterHeading } from "../components/TypewriterHeading";
-import { images } from "../data/site";
+import { images, profilePDF } from "../data/site";
 import {
   Calendar,
   Globe,
@@ -142,7 +142,7 @@ export function HomePage() {
               </Link>
 
               <a
-                href="/src/assets/2ML-Consulting-Limited-Updated-Profile.pdf"
+                href={profilePDF}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex h-fit items-center gap-2 rounded-full bg-[#8C1E2D] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#F5953B]"
