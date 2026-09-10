@@ -23,6 +23,8 @@ const disciplines = [
   "Gender, social development, monitoring, evaluation & learning",
 ];
 
+const API_BASE_URL = "http://localhost:8000";
+
 type TeamMember = {
   id: string;
   name: string;
@@ -207,105 +209,220 @@ const teamMembers: TeamMember[] = [
 
 const experts: TeamMember[] = [
   {
-    id: "5",
-    name: "Dr. William Tsimwa Muhairwe",
-    role: "Institutional Development and Governance Expert",
+    id: "1",
+    name: "Dr. William T. Muhairwe",
+    role: "Utility Management, Governance & Institutional Development Specialist",
     image: images.william,
-    bio: "Dr. William Tsimwa Muhairwe specializes in institutional development and governance, providing expert advisory on organizational transformation and capacity building.",
+    bio: "Dr. William T. Muhairwe is an internationally recognized Utility Management, Governance and Institutional Development Specialist and Economist. He specializes in strengthening public utilities and institutions through organizational restructuring, governance reform, strategic planning, performance management, commercialization, change management and leadership development.",
     expertise: [
       "Institutional Development",
-      "Governance",
-      "Capacity Building",
-      "Organizational Transformation",
+      "Utility Management and Governance",
+      "Strategic and Business Planning",
+      "Performance Improvement Programmes",
+      "Performance Management",
+      "Organizational Restructuring",
+      "Regulatory Systems",
+      "Utility Commercialization",
+      "Change Management",
+      "Leadership Development",
+      "Capacity Development",
+      "Stakeholder Engagement",
     ],
-    education: "PhD in Water Resources Management",
-    startYear: 2004,
-    experienceField: "institutional development",
+    education: "",
+    startYear: 1991,
+    experienceField:
+      "utility management, governance and institutional development",
   },
+
   {
-    id: "6",
-    name: "Gilbert Akol Echelai",
-    role: "GIS Expert",
+    id: "2",
+    name: "George Okol Echaku",
+    role: "Commercial, Billing, Customer Care & Utility Management Expert",
     image: images.gilbert,
-    bio: "Gilbert Akol Echelai specializes in Geographic Information Systems, providing expertise in spatial data management, mapping, and information systems for water sector projects.",
+    bio: "George Okol Echaku is a senior Commercial, Billing, Customer Care and Utility Management Expert specializing in the strengthening and modernization of water utility commercial operations. He has led initiatives focused on revenue growth, billing and collection performance, customer care, receivables management, staff capacity development, policy implementation, performance monitoring and the adoption of ICT for service delivery.",
     expertise: [
-      "GIS",
-      "Spatial Data Management",
-      "Mapping",
-      "Information Systems",
+      "Commercial and Financial Management",
+      "Billing and Revenue Collection",
+      "Customer Care",
+      "Strategic Business Planning",
+      "Revenue Enhancement",
+      "Debt Management",
+      "Non-Revenue Water Reduction",
+      "Tariff Development",
+      "Financial Sustainability",
+      "ICT and Automated Billing Systems",
+      "Utility Commercialization",
+      "Performance Improvement",
+      "Capacity Development",
     ],
-    education: "MSc in GIS",
-    startYear: 2011,
-    experienceField: "GIS and mapping",
+    education: "",
+    startYear: 2006,
+    experienceField:
+      "commercial management, billing and utility performance improvement",
   },
+
   {
-    id: "7",
+    id: "3",
+    name: "Gilbert Akol Echelai",
+    role: "Utility Performance, GIS, Asset Management & Project Management Expert",
+    image: images.gilbert,
+    bio: "Gilbert Akol Echelai is a Utility Performance, GIS, Asset Management and Project Management Expert with a strong background in using data, technology and performance management systems to strengthen water utilities. He has supported the design and implementation of Performance Improvement Programmes and the integration of GIS, asset, inventory, customer relationship and computerized utility management systems.",
+    expertise: [
+      "Utility Performance Management",
+      "Performance Improvement Programmes",
+      "Project Management",
+      "GIS and Mapping",
+      "Spatial Data Management",
+      "Asset Management Systems",
+      "Utility Diagnostic Assessments",
+      "Strategic and Business Planning",
+      "Performance Indicators and KPIs",
+      "Customer Enumeration and Mapping",
+      "ICT and Digital Solutions",
+      "Billing and Customer Management Systems",
+      "Organizational Restructuring",
+      "Non-Revenue Water Strategies",
+      "Capacity Building",
+      "Quality Management Systems",
+      "Data Management and Analysis",
+    ],
+    education: "",
+    startYear: 2009,
+    experienceField:
+      "utility performance management, GIS, asset management and project management",
+  },
+
+  {
+    id: "4",
     name: "Eng. Vincent Kamoga",
     role: "Operations and Maintenance Expert",
     image: images.vincent,
-    bio: "Eng. Vincent Kamoga specializes in operations and maintenance of water utilities, providing expertise in system optimization, maintenance planning, and operational efficiency.",
+    bio: "Eng. Vincent Kamoga specializes in operations and maintenance of water utilities, providing expertise in system optimization, maintenance planning and operational efficiency.",
     expertise: [
       "Operations",
       "Maintenance",
       "System Optimization",
       "Operational Efficiency",
+      "Water Distribution",
+      "Network Management",
+      "Hydraulic Systems",
+      "Preventive Maintenance",
     ],
-    education: "MSc in Water Engineering",
+    education: "",
     startYear: 2008,
     experienceField: "operations and maintenance",
   },
+
   {
-    id: "8",
-    name: "Sam Aikhomu",
-    role: "Organizational Development Expert",
+    id: "5",
+    name: "Samuel Aikhomu",
+    role: "Human Resources Management & Organizational Development Specialist",
     image: images.sam,
-    bio: "Sam Aikhomu specializes in organizational development, providing expertise in change management, organizational design, and capacity building for water sector institutions.",
+    bio: "Samuel Aikhomu is a Human Resources Management and Organizational Development Specialist with a strong focus on strengthening organizational structures, workforce systems and institutional capacity. His work includes organizational diagnostics, staffing and manpower assessments, competency reviews, workforce planning, HR policies and manuals, performance appraisal systems, succession plans and staff development programmes.",
     expertise: [
+      "Human Resource Management",
+      "HR Strategy",
       "Organizational Development",
+      "Institutional Strengthening",
+      "Organizational Assessments",
+      "Organizational Restructuring",
+      "Workforce Planning",
+      "Competency and Skills Gap Assessments",
+      "HR Policies and Manuals",
+      "Job Evaluation and Job Design",
+      "Performance Management",
+      "Capacity Development",
+      "Succession Planning",
       "Change Management",
-      "Organizational Design",
-      "Capacity Building",
+      "Organizational Transformation",
+      "Strategic Planning",
+      "Stakeholder Engagement",
     ],
-    education: "MBA in Organizational Development",
-    startYear: 2010,
-    experienceField: "organizational development",
+    education: "",
+    startYear: 2001,
+    experienceField: "human resource management and organizational development",
   },
+
   {
-    id: "9",
+    id: "6",
     name: "Lorna Kobusingye",
     role: "Legal Expert",
     image: images.lorna,
-    bio: "Lorna Kobusingye specializes in legal advisory services for water sector projects, providing expertise in regulatory compliance, contracts, and water law.",
+    bio: "Lorna Kobusingye provides legal advisory support for water sector projects, with a focus on regulatory compliance, contracts and water sector legal matters.",
     expertise: [
       "Legal Advisory",
       "Regulatory Compliance",
       "Contract Management",
       "Water Law",
+      "Policy and Regulation",
+      "Institutional Reform",
     ],
-    education: "LLM in Environmental Law",
+    education: "",
     startYear: 2014,
     experienceField: "legal advisory",
   },
+
   {
-    id: "10",
+    id: "7",
     name: "Rosemary Akidi",
     role: "Finance and Administration Expert",
     image: images.rosemary,
-    bio: "Rosemary Akidi specializes in financial management and administrative systems, providing expertise in financial planning, budgeting, and organizational support services.",
+    bio: "Rosemary Akidi specializes in financial management and administrative systems, providing expertise in financial planning, budgeting and organizational support services.",
     expertise: [
       "Financial Management",
+      "Financial Planning",
       "Budget Planning",
       "Administrative Systems",
       "Financial Governance",
+      "Organizational Support",
     ],
-    education: "MSc in Finance",
+    education: "",
     startYear: 2011,
-    experienceField: "financial management",
+    experienceField: "financial management and administration",
   },
 ];
 
+const imageByName = new Map<string, string>(
+  [...teamMembers, ...experts].map((m) => [m.name, m.image]),
+);
+
+function mapApiTeam(m: any): TeamMember {
+  return {
+    id: String(m.id),
+    name: m.name,
+    role: m.role,
+    image: m.image || imageByName.get(m.name) || "",
+    bio: m.bio,
+    expertise: m.expertise ?? [],
+    education: m.education ?? "",
+    startYear: m.start_year,
+    experienceField: m.experience_field,
+  };
+}
+
 export function TeamPage() {
+  const [members, setMembers] = useState<TeamMember[]>(teamMembers);
+  const [expertList, setExpertList] = useState<TeamMember[]>(experts);
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/team`)
+      .then((res) => (res.ok ? res.json() : Promise.reject()))
+      .then((data: any[]) => {
+        if (!Array.isArray(data) || data.length === 0) return;
+        const mapped = data
+          .filter((m) => m.is_active !== false)
+          .map(mapApiTeam)
+          .sort((a, b) => a.startYear - b.startYear);
+        setMembers(
+          mapped.filter((m) => !m.role.toLowerCase().includes("expert")),
+        );
+        setExpertList(
+          mapped.filter((m) => m.role.toLowerCase().includes("expert")),
+        );
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <>
@@ -318,7 +435,7 @@ export function TeamPage() {
           </h2>
         </Reveal>
         <div className="mt-8 grid gap-8 md:grid-cols-2">
-          {teamMembers.map((member, index) => (
+          {members.map((member, index) => (
             <TeamCard
               key={member.id}
               member={member}
@@ -338,7 +455,7 @@ export function TeamPage() {
           </h2>
         </Reveal>
         <div className="mt-8 grid gap-8 md:grid-cols-2">
-          {experts.map((expert, index) => (
+          {expertList.map((expert, index) => (
             <TeamCard
               key={expert.id}
               member={expert}

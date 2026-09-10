@@ -7,21 +7,16 @@ interface Service {
   title: string;
   copy: string;
   experience: string[];
+  image: string;
 }
 
 interface ServiceCardProps {
   service: Service;
   index: number;
   isEven: boolean;
-  serviceImages: string[];
 }
 
-function ServiceCard({
-  service,
-  index,
-  isEven,
-  serviceImages,
-}: ServiceCardProps) {
+function ServiceCard({ service, index, isEven }: ServiceCardProps) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -99,7 +94,7 @@ function ServiceCard({
             </div>
             <div className="flex flex-col overflow-hidden rounded-2xl transition-all duration-300 group-hover:shadow-2xl group-hover:-translate-y-2">
               <img
-                src={serviceImages[index % serviceImages.length]}
+                src={service.image}
                 alt={service.title}
                 className="h-full min-h-[250px] w-full object-contain transition-all duration-300"
               />
@@ -109,7 +104,7 @@ function ServiceCard({
           <>
             <div className="lg:col-start-2 flex flex-col overflow-hidden rounded-2xl transition-all duration-300 group-hover:shadow-2xl group-hover:-translate-y-2">
               <img
-                src={serviceImages[index % serviceImages.length]}
+                src={service.image}
                 alt={service.title}
                 className="h-full min-h-[250px] w-full object-contain transition-all duration-300"
               />
@@ -152,98 +147,225 @@ function ServiceCard({
 
 const services = [
   {
-    title: "Institutional Development & Organizational Transformation",
-    copy: "Strong institutions are the foundation of sustainable development. 2ML has extensive experience supporting organizations to strengthen governance structures, improve organizational effectiveness, redesign business processes and build institutional capacity. Our institutional development services include organizational assessments, change management, business process re-engineering, governance strengthening, organizational restructuring, capacity development and implementation of performance improvement initiatives that enhance accountability and operational efficiency.",
+    title: "Performance Improvement Programmes (PIPs)",
+
+    copy: "2ML Consulting provides tailor-made, short-term and high-impact Performance Improvement Programmes designed to improve the technical, commercial and financial performance of utilities. Our approach combines performance diagnostics, KPI analysis, participatory target setting, action planning, performance monitoring and incentive frameworks to generate quick wins and sustain long-term improvements.",
+
     experience: [
-      "Organizational and Institutional Technical Assistance – Ondo State Water Corporation (Nigeria)",
-      "System Strengthening for Urban Water Utilities – South Sudan",
-      "System Strengthening for Eleven Town Water Utilities – Ethiopia",
+      "Uganda National Water and Sewerage Corporation (NWSC)",
+      "Utility Performance Improvement Programmes across Africa",
+      "Performance improvement assignments in Nigeria, Ethiopia, South Sudan and Kenya",
     ],
+
+    image: images.pip,
   },
+
+  {
+    title: "Utility Management & Business Re-Engineering",
+
+    copy: "We support utilities and institutions to strengthen organisational effectiveness, operational efficiency and service delivery through institutional development and business re-engineering. Our services include organisational development, leadership training, human resource reviews, job and competency analysis, change management, efficiency improvement and performance-based incentive mechanisms.",
+
+    experience: [
+      "Uganda National Water and Sewerage Corporation (NWSC)",
+      "Port Harcourt Water Corporation – Nigeria",
+      "Ondo State Water Corporation – Nigeria",
+      "Taraba State Water & Sewerage Corporation – Nigeria",
+      "Public water institutions in Ethiopia and Jordan",
+    ],
+
+    image: images.utilitymanagement,
+  },
+
   {
     title: "Enterprise Resource Planning (ERP) Solutions",
-    copy: "2ML Consulting Limited supports governments, utilities and public institutions in implementing integrated Enterprise Resource Planning solutions that drive digital transformation, improve operational efficiency and strengthen institutional performance. Our ERP solutions integrate billing, customer relationship management (CRM), procurement, asset management, accounting, human resource management and business intelligence into a single digital platform, enabling organizations to streamline operations, improve decision-making and enhance service delivery.",
+
+    copy: "We provide integrated ERP solutions that help utilities and institutions streamline core business processes and improve operational efficiency. Our solutions support Billing, Customer Relationship Management, Asset Management, Accounting, Procurement and Human Resource Management, helping organisations reduce operational costs, improve customer satisfaction, reduce utility losses and enhance billing and payment accuracy.",
+
     experience: [
-      "Upgrade of Customer Information, Billing and Collection System – Lagos Water Corporation (Nigeria)",
-      "Automated Procurement Management System – Lagos Water Corporation (Nigeria)",
-      "Customer Billing, CRM and Cloud Infrastructure – Ogun State Water Corporation (Nigeria)",
-      "Utility Digitization and Enterprise Systems Strengthening – Bor Water Supply System, South Sudan",
-      "Information Management Systems and Billing Process Improvement – Mulonga Water and Sewerage Company (Zambia)",
+      "ICT and computerized utility systems integration",
+      "Automated billing and customer management systems",
+      "Integration of GIS with billing and customer care systems",
+      "Utility management systems implementation and enhancement",
     ],
+
+    image: images.erp,
   },
+
   {
-    title: "Performance Improvement Programmes (PIP)",
-    copy: "Performance Improvement Programmes are at the core of 2ML’s transformation approach. Developed from the internationally recognized 100-Day Performance Improvement Programme pioneered at Uganda’s National Water and Sewerage Corporation (NWSC), our methodology enables institutions to achieve rapid, measurable improvements in organizational performance through leadership, accountability, staff engagement and continuous performance management. Our PIPs have successfully transformed utilities across Africa by improving operational efficiency, strengthening customer service, increasing revenue collection and enhancing institutional performance.",
+    title: "Strategic Planning",
+
+    copy: "2ML supports water sector institutions and utilities to strengthen strategic, institutional and financial planning for sustainable and accountable service delivery. Our services include business and corporate planning, institutional reform, transitional management, tariff studies and design, cost-recovery strategies, financial modelling, investment planning and development of technical, commercial and financial operating procedures.",
+
     experience: [
-      "Lagos Water Corporation (Nigeria)",
-      "Water and Sanitation Corporation (WASAC), Rwanda",
-      "Guma Valley Water Company, Sierra Leone",
-      "Taraba Water and Sewerage Corporation, Nigeria",
-      "Water Corporation of Oyo State, Nigeria",
+      "Strategic and business planning assignments across Africa",
+      "Uganda National Water and Sewerage Corporation (NWSC)",
+      "Water utilities in Nigeria, Ethiopia, Kenya and South Sudan",
     ],
+
+    image: images.strategicplanning,
   },
+
+  {
+    title: "Tariff Studies, Financial Modelling & Investment Planning",
+
+    copy: "We support utilities to strengthen financial sustainability through tariff studies, tariff design, cost-recovery strategies, financial modelling and investment planning. Our approach links financial analysis with operational requirements and service delivery objectives to support informed decision-making and sustainable utility performance.",
+
+    experience: [
+      "Tariff studies and tariff design for water utilities",
+      "Financial modelling and investment planning assignments",
+      "Commercial and financial management support to utilities in Uganda, Nigeria and Ethiopia",
+    ],
+
+    image: images.financialmanagement,
+  },
+
+  {
+    title: "Integrated Water Resources Management",
+
+    copy: "2ML Consulting integrates water resources management into utility performance and strategic planning to address water scarcity, climate change and environmental pressures. We support clients in ecosystem management and restoration and promote catchment-wide approaches to corporate planning and operations, including water resource management, water quality assessment, flood risk management and groundwater management.",
+
+    experience: [
+      "Water resources management at watershed and regional levels",
+      "Water quality assessment",
+      "River hydrology and hydraulics and flood risk management",
+      "Ecological continuity and waterways bank restoration",
+      "Groundwater management",
+    ],
+
+    image: images.field,
+  },
+
+  {
+    title: "Utility Diagnostic & Environmental Studies",
+
+    copy: "We undertake utility diagnostic and environmental studies to identify performance gaps, establish priorities and develop practical action plans. Our services include baseline assessments based on utility performance indicators, water and sanitation studies, public-private partnership assessments, infrastructure planning, socio-economic studies, environmental and social impact assessments, strategic environmental assessments, environmental management plans and stakeholder engagement.",
+
+    experience: [
+      "Utility baseline and performance assessments",
+      "Water and sanitation studies",
+      "Public-Private Partnership assessments",
+      "Infrastructure planning assignments",
+      "Environmental and Social Impact Assessments (ESIAs)",
+      "Strategic Environmental Assessments (SEAs)",
+    ],
+
+    image: images.research,
+  },
+
+  {
+    title: "Operational Planning & Optimization",
+
+    copy: "We help utilities optimize their technical and operational performance through structured planning and performance improvement interventions. Our expertise covers Non-Revenue Water management, District Metering Areas, pressure and flow monitoring, hydraulic analysis, network optimization, water balance computation and meter management.",
+
+    experience: [
+      "Non-Revenue Water (NRW) management",
+      "District Metering Area establishment",
+      "Pressure and flow monitoring",
+      "Hydraulic analysis and network optimization",
+      "Water balance computation",
+      "Meter installation, policy development and maintenance training",
+    ],
+
+    image: images.map,
+  },
+
+  {
+    title: "Water Distribution & Network Management",
+
+    copy: "2ML supports utilities to improve the reliability and efficiency of water distribution networks through leak detection, planned preventive maintenance, network surveillance, asset inventory development and hydraulic network management. We also support the use of hydraulic modelling tools and build the capacity of technical teams to operate and maintain network systems.",
+
+    experience: [
+      "Leak detection and repair programmes",
+      "Planned Preventive Maintenance (PPM)",
+      "Piped network surveillance",
+      "Hydraulic modelling and pressure management",
+      "Water supply network operations and maintenance",
+    ],
+
+    image: images.team,
+  },
+
+  {
+    title: "Asset Management",
+
+    copy: "We support utilities to establish effective asset management systems that improve the planning, maintenance and performance of water supply infrastructure. Our services include asset inventory development, asset management policies, asset management strategies and action plans, network maintenance procedures and Standard Operating Procedures for operations and maintenance.",
+
+    experience: [
+      "Development of Asset Inventories",
+      "Asset Management Policy Development",
+      "Asset Management Strategies and Action Plans",
+      "Network maintenance planning",
+      "Asset management systems for water utilities",
+    ],
+
+    image: images.institutionaldevelopment,
+  },
+
+  {
+    title: "GIS, Survey & Mapping",
+
+    copy: "We use GIS, spatial data and digital technologies to strengthen utility planning, customer management and operational decision-making. Our services include customer enumeration, customer mapping, utility network surveys, basemap development, GIS database implementation, spatial analysis and incident location mapping and tracking.",
+
+    experience: [
+      "Customer enumeration and mapping",
+      "Utility network surveys and mapping",
+      "GIS database implementation",
+      "Development of utility Geoportals",
+      "Integration of GIS with billing and customer care systems",
+      "Spatial analysis of commercial and technical operations",
+    ],
+
+    image: images.gissolutions,
+  },
+
+  {
+    title: "Human Capital Development",
+
+    copy: "We provide comprehensive Human Resource Management solutions aligned to organisational needs and focused on improving staff performance, commitment and motivation. Our services include organisational design and restructuring, capacity needs assessments, job evaluations, salary surveys, workload analysis, performance management, change management, job descriptions, HR manuals and policies.",
+
+    experience: [
+      "Port Harcourt Water Corporation – Nigeria",
+      "Ondo State Water Corporation – Nigeria",
+      "Taraba State Water & Sewerage Corporation – Nigeria",
+      "Ogun State Water Corporation – Nigeria",
+      "UNICEF Utility Strengthening Programme – Ethiopia",
+    ],
+
+    image: images.community,
+  },
+
   {
     title: "Policy, Regulation & Institutional Reform",
-    copy: "2ML has become a trusted partner in supporting governments to develop policies, regulatory frameworks and institutional reforms that strengthen the water, sanitation and hygiene sector. Our experience includes policy reviews, legislative analysis, regulatory framework development, institutional assessments, stakeholder consultations, implementation planning and capacity building to support effective policy implementation.",
+
+    copy: "2ML supports governments, regulators, utilities and public institutions to strengthen institutional systems, governance and regulatory arrangements. Our expertise includes institutional assessments, organisational restructuring, regulatory systems, policy implementation support, governance and accountability systems, stakeholder engagement and institutional capacity strengthening.",
+
     experience: [
-      "Development of Nigeria National WASH Policy",
-      "Development of Regulatory Tools for Uganda’s Water Supply and Sanitation Subsector",
-      "Establishment of a WASH Regulatory Framework – Ethiopia",
+      "Regulatory systems and sector oversight assignments",
+      "Institutional reform and organisational restructuring",
+      "Policy implementation support",
+      "Institutional strengthening of public water utilities",
+      "Assignments across Uganda, Nigeria, Ethiopia, Kenya and South Sudan",
     ],
+
+    image: images.policy,
   },
+
   {
-    title: "Utility Management & Commercialization",
-    copy: "We support utilities to become financially sustainable, operationally efficient and customer-focused through integrated utility management solutions. Our expertise includes commercialization, strategic business planning, customer enumeration, billing and customer management systems, tariff studies, financial modelling, asset management, operations and maintenance, and organizational strengthening.",
+    title: "Capacity Development, Training & Leadership",
+
+    copy: "We strengthen organisational and individual capacity through targeted training, leadership development, coaching, mentoring and skills-gap assessments. Our approach focuses on building the capabilities required to sustain institutional reforms, improve performance and strengthen management and service delivery.",
+
     experience: [
-      "Kaduna State Water Corporation (Nigeria)",
-      "Ondo State Water Corporation (Nigeria)",
-      "South Sudan Urban Water Utilities",
-      "Eleven Town Water Utilities (Ethiopia)",
+      "Leadership training, coaching and mentoring",
+      "Staff capacity development programmes",
+      "Training needs and skills-gap assessments",
+      "Executive capacity development",
+      "Performance management and staff development",
     ],
-  },
-  {
-    title: "Strategic Business Planning & Institutional Strengthening",
-    copy: "2ML works with governments and utilities to develop practical, results-oriented strategic and investment plans that align institutional priorities with long-term development objectives. Using participatory approaches, we facilitate organizational diagnostics, stakeholder engagement, strategy formulation, implementation planning and performance monitoring to ensure ownership and sustainability.",
-    experience: [
-      "Utility Business Planning – Ethiopia Town Water Utilities",
-      "Institutional Strengthening Programmes across multiple African utilities",
-    ],
-  },
-  // {
-  //   title: "Water Supply, Sanitation & Hygiene (WASH)",
-  //   copy: "Our WASH experience covers the full spectrum of urban and rural water supply, sanitation and hygiene services. We provide advisory services that strengthen institutional performance, improve service delivery and support sustainable sector development. Our multidisciplinary team has extensive experience in sanitation planning, hygiene promotion, city-wide inclusive sanitation, utility strengthening, climate-resilient planning, financing strategies and institutional capacity development.",
-  //   experience: [
-  //     "Nigeria National WASH Policy",
-  //     "South Sudan Urban Water Utilities",
-  //     "Ethiopia Utility Strengthening Programme",
-  //   ],
-  // },
-  {
-    title: "GIS, Surveys & Digital Solutions",
-    copy: "2ML integrates modern technologies and digital tools into institutional strengthening programmes to improve planning, decision-making and operational performance. Our expertise includes Geographic Information Systems (GIS), customer enumeration, utility mapping, network surveys, spatial analysis, data management, digital information systems and decision-support tools that enhance operational efficiency.",
-    experience: [
-      "Customer Enumeration and GIS Mapping – Multiple Water Utilities",
-      "Utility Network Mapping and Database Development",
-      "Spatial Analysis for Utility Operations",
-    ],
-  },
-  {
-    title:
-      "Financial Management, Commercial Operations & Non-Revenue Water Management",
-    copy: "We assist utilities in strengthening financial sustainability through improved commercial systems, financial management and operational efficiency. Our services include financial modelling, tariff studies, revenue enhancement, billing systems, customer database development, asset management, non-revenue water reduction strategies, hydraulic analysis and operational optimization.",
-    experience: [
-      "Ondo State Water Corporation",
-      "Eleven Town Water Utilities – Ethiopia",
-      "Kaduna State Water Corporation",
-    ],
-  },
-  {
-    title: "Research, Monitoring, Evaluation & Capacity Development",
-    copy: "Evidence-based decision-making is central to our approach. We conduct research, institutional assessments, monitoring and evaluation, impact assessments and capacity development programmes that enable clients to make informed decisions and sustain improvements beyond project completion. Our participatory training and mentoring programmes strengthen technical, managerial and leadership capacity at all levels of an organization, ensuring long-term institutional resilience and continuous improvement.",
-    experience: [],
+
+    image: images.meeting,
   },
 ];
-
 export function ServicesPage() {
   return (
     <>
@@ -259,17 +381,6 @@ export function ServicesPage() {
         </Reveal>
         <div className="mt-16 space-y-16">
           {services.map((service, index) => {
-            const serviceImages = [
-              images.institutionaldevelopment,
-              images.erp,
-              images.pip,
-              images.policy,
-              images.utilitymanagement,
-              images.strategicplanning,
-              images.gissolutions,
-              images.financialmanagement,
-              images.research,
-            ];
             const isEven = index % 2 === 0;
             return (
               <ServiceCard
@@ -277,7 +388,6 @@ export function ServicesPage() {
                 service={service}
                 index={index}
                 isEven={isEven}
-                serviceImages={serviceImages}
               />
             );
           })}

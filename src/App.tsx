@@ -9,6 +9,8 @@ import { ProjectDetailPage } from "./pages/ProjectDetailPage";
 import { ProjectsPage } from "./pages/ProjectsPage";
 import { ServicesPage } from "./pages/ServicesPage";
 import { TeamPage } from "./pages/TeamPage";
+import { AdminPage } from "./pages/AdminPage";
+import ProjectPortfolioMap from "./pages/WorldPortfolioMap";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path="/projects/:projectId" element={<ProjectDetailPage />} />
           <Route path="/team" element={<TeamPage />} />
           <Route path="/insights" element={<InsightsPage />} />
+          <Route path="/project-map" element={<ProjectPortfolioMap />} />
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="/careers" element={<CareersPage />} />
           <Route path="/contact-us" element={<ContactPage />} />
           <Route path="*" element={<HomePage />} />

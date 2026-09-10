@@ -249,21 +249,21 @@ export function HomePage() {
               },
               {
                 icon: Building2,
-                value: "50",
+                value: "20",
                 suffix: "+",
                 label: "Government agencies and utilities",
               },
               {
                 icon: Database,
-                value: "200",
+                value: "20",
                 suffix: "+",
                 label: "Successful projects delivered",
               },
               {
                 icon: TrendingUp,
-                value: "1000",
+                value: "500",
                 suffix: "+",
-                label: "Professionals trained and developed",
+                label: "Utility staffs trained",
               },
             ].map(({ icon: Icon, value, suffix, label }, index) => (
               <Reveal key={value} delay={index * 100}>
@@ -275,7 +275,9 @@ export function HomePage() {
                     duration={2500}
                   />
                 </div>
-                <p className="mt-6 text-sm leading-6 text-white/75">{label}</p>
+                <p className="mt-6 text-sm leading-6 text-center text-white/75">
+                  {label}
+                </p>
               </Reveal>
             ))}
           </div>

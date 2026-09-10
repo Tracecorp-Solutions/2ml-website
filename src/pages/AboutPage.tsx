@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { Reveal } from "../components/Motion";
 import { Rocket, UsersRound, Trophy } from "lucide-react";
+import WorldPortfolioMap from "./WorldPortfolioMap";
 
 const values = [
   {
@@ -211,6 +212,9 @@ export function AboutPage() {
           ))}
         </div>
       </section>
+      <main className="mx-auto max-w-7xl px-6 py-12">
+        <WorldPortfolioMap />
+      </main>
     </>
   );
 }

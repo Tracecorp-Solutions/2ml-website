@@ -3,7 +3,19 @@ import { Eyebrow } from "../components/Shared";
 import { Reveal } from "../components/Motion";
 import { ArrowRight, Calendar } from "lucide-react";
 
-const articles = [
+const API_BASE_URL = "http://localhost:8000";
+
+interface Insight {
+  id?: number;
+  title: string;
+  description: string;
+  image?: string | null;
+  category: string;
+  date: string;
+  location: string;
+}
+
+const fallbackArticles = [
   {
     title: "World Water Summit — Madrid, Spain",
     description:
@@ -31,7 +43,7 @@ const articles = [
 ];
 
 interface InsightCardProps {
-  article: (typeof articles)[0];
+  article: Insight;
   index: number;
 }
 
@@ -109,6 +121,30 @@ function InsightCard({ article, index }: InsightCardProps) {
 }
 
 export function InsightsPage() {
+  const [articles, setArticles] = useState<Insight[]>(fallbackArticles);
+
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/insights`)
+      .then((res) => (res.ok ? res.json() : Promise.reject()))
+      .then((data: any[]) => {
+        if (!Array.isArray(data) || data.length === 0) return;
+        setArticles(
+          data
+            .filter((i) => i.is_active !== false)
+            .map((i) => ({
+              id: i.id,
+              title: i.title,
+              description: i.description,
+              image: i.image,
+              category: i.category,
+              date: i.date,
+              location: i.location,
+            })),
+        );
+      })
+      .catch(() => {});
+  }, []);
+
   return (
     <>
       <section className="mx-auto max-w-[95%] px-5 py-20 sm:px-8 lg:px-12 lg:py-32">
