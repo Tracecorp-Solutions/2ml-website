@@ -232,7 +232,7 @@ const services = [
       "Groundwater management",
     ],
 
-    image: images.field,
+    image: images.intergrated,
   },
 
   {
@@ -266,7 +266,7 @@ const services = [
       "Meter installation, policy development and maintenance training",
     ],
 
-    image: images.map,
+    image: images.operation,
   },
 
   {
@@ -282,7 +282,7 @@ const services = [
       "Water supply network operations and maintenance",
     ],
 
-    image: images.team,
+    image: images.waterdistribution,
   },
 
   {
@@ -363,7 +363,7 @@ const services = [
       "Performance management and staff development",
     ],
 
-    image: images.meeting,
+    image: images.capacitydevelopment,
   },
 ];
 export function ServicesPage() {

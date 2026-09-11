@@ -115,8 +115,8 @@ export default function ProjectPortfolioMap() {
   const selectedData = selectedCountry ? portfolio[selectedCountry] : null;
 
   return (
-    <section className="w-full bg-[#f8e6d1] py-16">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="w-full bg-[#f8e6d1] py-6">
+      <div className="px-6">
         <div className="mb-8 text-center">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#F5953B]">
             Our Global Footprint
@@ -124,13 +124,13 @@ export default function ProjectPortfolioMap() {
           <h2 className="text-3xl font-bold tracking-tight text-[#8C1E2D] md:text-4xl">
             Projects & Impact Across the Globe
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-gray-700 md:text-base">
+          <p className="text-sm leading-7 text-gray-700 md:text-base">
             Select a continent to zoom into a region and click a marker to see
             the projects.
           </p>
         </div>
 
-        <div className="mb-6 flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <div className="mb-4 flex flex-col items-center justify-between gap-4 sm:flex-row">
           <label className="flex items-center gap-3">
             <span className="text-sm font-semibold text-gray-800">
               Filter by continent:

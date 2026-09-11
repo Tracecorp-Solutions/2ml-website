@@ -19,7 +19,8 @@ const heroImages = [
   images.field,
   images.map,
   images.meeting,
-  images.team,
+  images.hero2,
+  images.hero3,
 ];
 
 function CountingNumber({
@@ -207,14 +208,14 @@ export function HomePage() {
       {/* Impact Figures Section */}
       <section className="relative isolate bg-[#111111] text-white">
         <img
-          src={images.hero}
+          src={images.hero4}
           alt="Impact background"
           className="absolute inset-0 -z-10 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/80 via-black/60 to-black/80" />
+        <div className="absolute inset-0 -z-10" />
         <div className="relative z-10 mx-auto grid max-w-[95%] gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[.8fr_1.2fr] lg:px-12 lg:py-28">
           <Reveal>
-            <p className="text-xs font-bold uppercase tracking-[.18em] text-[#F5953B]">
+            <p className="text-xl font-bold uppercase tracking-[.18em] text-[#F5953B]">
               By the numbers
             </p>
             <h2 className="mt-6 text-4xl font-semibold leading-[.98] tracking-[-.065em] sm:text-6xl">

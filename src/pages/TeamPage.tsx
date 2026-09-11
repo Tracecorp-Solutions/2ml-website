@@ -401,7 +401,6 @@ function mapApiTeam(m: any): TeamMember {
 }
 
 export function TeamPage() {
-  const [members, setMembers] = useState<TeamMember[]>(teamMembers);
   const [expertList, setExpertList] = useState<TeamMember[]>(experts);
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
 
@@ -414,9 +413,7 @@ export function TeamPage() {
           .filter((m) => m.is_active !== false)
           .map(mapApiTeam)
           .sort((a, b) => a.startYear - b.startYear);
-        setMembers(
-          mapped.filter((m) => !m.role.toLowerCase().includes("expert")),
-        );
+
         setExpertList(
           mapped.filter((m) => m.role.toLowerCase().includes("expert")),
         );
@@ -427,7 +424,7 @@ export function TeamPage() {
   return (
     <>
       {/* Team Members Section */}
-      <section className="mx-auto max-w-[95%] px-5 py-10 mt-10 sm:px-8 lg:px-12">
+      {/* <section className="mx-auto max-w-[95%] px-5 py-10 mt-10 sm:px-8 lg:px-12">
         <Reveal>
           <Eyebrow>Top management</Eyebrow>
           <h2 className="mt-6 max-w-3xl text-4xl font-semibold leading-[.98] tracking-[-.06em] sm:text-5xl">
@@ -444,15 +441,12 @@ export function TeamPage() {
             />
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* Experts Section */}
-      <section className="mx-auto max-w-[95%] px-5 pb-10 sm:px-8 lg:px-12">
+      <section className="mx-auto max-w-[95%] px-5 mt-20 pb-10 sm:px-8 lg:px-12">
         <Reveal>
           <Eyebrow>Our experts</Eyebrow>
-          <h2 className="mt-6 max-w-3xl text-4xl font-semibold leading-[.98] tracking-[-.06em] sm:text-5xl">
-            Specialist knowledge driving results.
-          </h2>
         </Reveal>
         <div className="mt-8 grid gap-8 md:grid-cols-2">
           {expertList.map((expert, index) => (
