@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { Reveal } from "../components/Motion";
 import { Rocket, UsersRound, Trophy } from "lucide-react";
 import WorldPortfolioMap from "./WorldPortfolioMap";
+import { Eyebrow } from "../components/Shared";
 
 const values = [
   {
@@ -88,9 +89,7 @@ export function AboutPage() {
         <div className="mx-auto max-w-[95%] px-5 pt-20 pb-10 sm:px-8 lg:px-12">
           <div>
             <Reveal>
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#8C1E2D]">
-                About 2ML Consulting Limited
-              </span>
+              <Eyebrow>About 2ML Consulting Limited</Eyebrow>
               <h2 className="mt-5 text-4xl font-semibold leading-[1.15] tracking-[-.065em] text-[#111111] sm:text-5xl">
                 Strong leadership. Sound management. Empowered institutions.
               </h2>
@@ -147,9 +146,7 @@ export function AboutPage() {
               delay={100}
               className="rounded-2xl border border-black/10 bg-white p-10 transition-all duration-300 hover:border-[#8C1E2D] hover:shadow-xl"
             >
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#8C1E2D]">
-                Our vision
-              </span>
+              <Eyebrow>Our vision</Eyebrow>
               <h3 className="mt-5 text-2xl font-semibold leading-[1.2] tracking-[-.045em] text-[#111111]">
                 To be a leading management and leadership consultancy firm.
               </h3>
@@ -163,9 +160,7 @@ export function AboutPage() {
               delay={200}
               className="rounded-2xl border border-black/10 bg-white p-10 transition-all duration-300 hover:border-[#8C1E2D] hover:shadow-xl"
             >
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#8C1E2D]">
-                Our mission
-              </span>
+              <Eyebrow>Our mission</Eyebrow>
               <h3 className="mt-5 text-2xl font-semibold leading-[1.2] tracking-[-.045em] text-[#111111]">
                 To foster strong partnerships in transformation and performance
                 improvement.
@@ -182,9 +177,7 @@ export function AboutPage() {
       </section>
       <section className="mx-auto max-w-[95%] px-5 py-10 sm:px-8 lg:px-12">
         <Reveal>
-          <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#8C1E2D]">
-            Quality statement
-          </span>
+          <Eyebrow>Quality statement</Eyebrow>
           <h2 className="mt-4 text-4xl font-semibold leading-[1.15] tracking-[-.065em] text-[#111111] sm:text-5xl">
             Quality is at the heart of everything we do.
           </h2>
@@ -212,7 +205,7 @@ export function AboutPage() {
           ))}
         </div>
       </section>
-      <main className="mx-auto max-w-7xl px-6 py-12">
+      <main className="px-6 py-4">
         <WorldPortfolioMap />
       </main>
     </>

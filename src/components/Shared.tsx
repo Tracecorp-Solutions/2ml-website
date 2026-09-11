@@ -7,9 +7,9 @@ export function Arrow() {
 }
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#8C1E2D]">
+    <h2 className="text-xl font-bold uppercase tracking-[0.18em] text-[#8C1E2D]">
       {children}
-    </p>
+    </h2>
   );
 }
 
